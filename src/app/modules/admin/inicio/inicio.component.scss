@@ -1,0 +1,22 @@
+.div-inicial {
+    background-color: #e5eaef;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+
+.paading{
+    padding: 80px;
+}
+
+@media (max-width:600px) {
+    .paading {
+    padding: 15px;
+    }
+
+}
+@media (min-width: 600px) {
+    .sm\:font-customFontBlack {
+        font-family: Gotham-Black, sans-serif !important;
+    }
+}

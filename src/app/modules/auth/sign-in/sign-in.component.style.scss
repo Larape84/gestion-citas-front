@@ -1,0 +1,29 @@
+.mt-28 {
+    margin-top: 5rem /* 112px */ !important;
+}
+.p-10 {
+    padding: 2.5rem /* 40px */ !important;
+}
+.divide-x > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-x-reverse: 0 !important;
+    border-right-width: calc(1px * var(--tw-divide-x-reverse)) !important;
+    border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse))) !important;
+}
+.paddin {
+    padding: 2.5rem /* 40px */ !important;
+}
+.px-2 {
+    padding-left: 0.5rem /* 8px */ !important;
+    padding-right: 0.5rem /* 8px */ !important;
+}
+
+@media (min-width: 960px) {
+    .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+@media (min-width: 960px) {
+    .md\:flex {
+        display: flex !important;
+    }
+}
