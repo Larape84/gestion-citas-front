@@ -1,1 +1,73 @@
-<p>codigo-qr works!</p>
+
+
+<div class="w-full h-full">
+
+    <div class="flex items-center sm:pl-16 gap-4 pl-4 pt-6 pb-4 relative rounded-b-3xl bg-white">
+
+        <div class=" items-center  flex overflow-hidden">
+            <mat-icon class="icon-size-12 text-gray-700" svgIcon="heroicons_outline:arrows-right-left"></mat-icon>
+
+          </div>
+          <div class="flex-1 mx-3">
+              <div class="text-3xl font-semibold tracking-tight leading-8 ">
+                  Codigo QR
+              </div>
+              <div class="flex items-center">
+                  <div class="font-medium tracking-tight text-secondary">
+                      Módulo de codigo QR
+
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+
+      <div class="w-full paddingPrincipal">
+
+
+
+        <div class="w-full bg-white  rounded-lg overflow-hidden border border-gray-300">
+
+           <div class="flex md:flex-row flex-col w-full p-3 gap-3 items-center justify-between">
+
+            <div class="flex gap-4 w-full md:w-auto">
+
+
+
+
+
+
+                <qrcode [qrdata]="'Your data string'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+           </div>
+
+
+           <div class=" w-full border-b border-gray-300">
+
+
+
+
+           </div>
+
+
+
+
+
+        </div>
+    </div>
+
+
+</div>
+
