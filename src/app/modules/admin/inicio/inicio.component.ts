@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FinalizarSessionService } from 'app/core/services/finalizar-session.service';
 import { UtilityService } from 'app/core/services/utility.service';
 import { SharedModuleModule } from 'app/shared/module/shared-module.module';
 
@@ -13,7 +14,10 @@ export class InicioComponent implements OnInit {
     public screen : string = ''
 
 
-    constructor(private _utilService: UtilityService){}
+    constructor(
+        private _utilService: UtilityService,
+    ){
+    }
 
     ngOnInit(): void {
         this._utilService.getWidth().subscribe({

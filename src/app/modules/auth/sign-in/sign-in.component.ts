@@ -17,6 +17,7 @@ import { ValidarSoloLetrasConEspacio } from 'app/shared/Validators/input.Validat
 import { ErrorService } from 'app/core/services/error.service';
 import { NgxMaskDirective } from 'ngx-mask';
 import { Sweetalert2Service } from 'app/core/services/sweetalert2.service';
+import { FinalizarSessionService } from 'app/core/services/finalizar-session.service';
 
 @Component({
     selector     : 'auth-sign-in',
@@ -48,7 +49,8 @@ export class AuthSignInComponent implements OnInit
         private _inicioSesion: InicioSesionService,
         private _fireService : FirebaseService,
         public errorService : ErrorService,
-        private _sweetAlertService : Sweetalert2Service
+        private _sweetAlertService : Sweetalert2Service,
+        private _finalizaSecion : FinalizarSessionService
     )
     {
     }
@@ -71,6 +73,7 @@ export class AuthSignInComponent implements OnInit
 
         // localStorage.removeItem('accessToken')
         this._inicioSesion.eliminarUsuario()
+        this._finalizaSecion.resetSessionTimer()
         // sessionStorage.clear();
     }
 
@@ -156,6 +159,7 @@ export class AuthSignInComponent implements OnInit
 
                         localStorage.setItem('accessToken', resp.token );
                         this._inicioSesion.asignarUsuarioModulos(resp, resp.permisos)
+                        this._finalizaSecion.startSessionTimer()
                         const redirectURL = '/app';
                         this._router.navigateByUrl(redirectURL);
 
