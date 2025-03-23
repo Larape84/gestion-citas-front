@@ -42,7 +42,7 @@ export const AuthGuardChildren: CanActivateChildFn = (route, state) =>
               confirmButton: 'rounded-full w-26 ring-0'
             }
           }).then(() => {
-              _router.navigateByUrl('sign-in');
+              _router.navigateByUrl('/login/sign-in');
           })
 
        return false

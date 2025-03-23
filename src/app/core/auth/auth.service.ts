@@ -89,7 +89,7 @@ export class AuthService{
 
             if (!localStorage.getItem('accessToken')){
                 this._inicioSesion.eliminarUsuario()
-                this._router.navigate(['/sign-in']);
+                this._router.navigate(['/login/sign-in']);
                 resolve()
             }
 

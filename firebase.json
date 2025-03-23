@@ -5,12 +5,6 @@
   },
   "hosting": [
   {
-    "site": "gastrosena-55a47",
-    "public": "dist/public",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [{ "source": "**", "destination": "/index.html" }]
-  },
-  {
     "site": "sena-food-gourmet",
     "public": "dist/public",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
@@ -22,3 +16,4 @@
     "rules": "storage.rules"
   }
 }
+

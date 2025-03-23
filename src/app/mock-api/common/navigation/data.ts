@@ -22,10 +22,18 @@ export const compactNavigation: FuseNavigationItem[] = [
     // },
     {
         id   : 'Usuarios',
-        title: 'Codigo QR',
+        title: 'Código QR',
         type : 'basic',
         icon : 'heroicons_outline:users',
         link : '/codigoQr'
+    },
+
+    {
+        id   : 'ScanCodigo',
+        title: 'Scanear QR',
+        type : 'basic',
+        icon : 'heroicons_outline:camera',
+        link : '/scanQr'
     },
     // {
     //     id   : 'example',

@@ -10,11 +10,11 @@
           </div>
           <div class="flex-1 mx-3">
               <div class="text-3xl font-semibold tracking-tight leading-8 ">
-                  Codigo QR
+                  Código QR
               </div>
               <div class="flex items-center">
                   <div class="font-medium tracking-tight text-secondary">
-                      Módulo de codigo QR
+                      Módulo de código QR
 
                   </div>
               </div>
@@ -27,31 +27,70 @@
 
 
 
-        <div class="w-full bg-white  rounded-lg overflow-hidden border border-gray-300">
+        <div style="width: 600px; max-width: 90vw;" class="mx-auto mt-5 bg-white  rounded-lg overflow-hidden border border-gray-300">
 
-           <div class="flex md:flex-row flex-col w-full p-3 gap-3 items-center justify-between">
+           <div style="min-height: 40px; background-color: #00AF00;" class="w-full">
 
-            <div class="flex gap-4 w-full md:w-auto">
+           </div>
 
+           <div class="w-full px-3 py-2">
 
+            <div class="">
+                <span class="font-semibold">
+                    Usuario :
+                </span>
+                <span class="text-gray-700">
+                    {{this.user.nombre}} {{this.user.apellido}}
+                </span>
+            </div>
 
+            <div class="">
+                <span class="font-semibold">
+                    Centro de formación :
+                </span>
+                <span class="text-gray-700">
+                    {{this.user.centroCosto}}
+                </span>
+            </div>
 
-
-
-                <qrcode [qrdata]="'Your data string'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-
-
-
-
-
-
-
+            <div class="">
+                <span class="font-semibold">
+                    Cargo :
+                </span>
+                <span class="text-gray-700">
+                    {{this.user.cargo}}
+                </span>
             </div>
 
 
 
+            <hr class="my-0 mt-2">
+
+
 
            </div>
+
+           <div #qrcode class="w-full">
+               <qrcode  [qrdata]="qrData" [width]="256" cssClass="qrleo"></qrcode>
+
+           </div>
+
+
+           <div class="w-full flex items-center" style="display: flex; align-items: center; justify-content: center;">
+
+
+
+            <button (click)="descargar()" mat-raised-button color="primary" type="button" style="margin: 10px;">
+                Descargar Qr
+            </button>
+
+           </div>
+
+
+
+
+
+
 
 
            <div class=" w-full border-b border-gray-300">

@@ -121,7 +121,6 @@ export class AuthSignUpComponent implements OnInit
             centroCosto:['',[Validators.required]],
             contrasena:['',[Validators.required, Validators.minLength(4)]],
             terminosCondiciones:[false,[Validators.required, Validators.requiredTrue]],
-            acceso:['',[]]
            },
        );
     }
@@ -170,13 +169,17 @@ export class AuthSignUpComponent implements OnInit
 
         this.showAlert = false;
         const usuario = this.signUpForm.value
+
+        usuario['nombre']= usuario['nombre'].toUpperCase()
+        usuario['apellido']= usuario['apellido'].toUpperCase()
+
         console.log(usuario)
 
         const existeUsuario = await this.validarUsuarioRegistrado();
 
         if(existeUsuario){
             this._sweetalertService.alertInfo({info:'El usuario ya se encuentra registrado, por favor iniciar sesión'})
-            this._route.navigateByUrl('/sign-in')
+            this._route.navigateByUrl('/login/sign-in')
             return
         }
 
@@ -202,7 +205,7 @@ export class AuthSignUpComponent implements OnInit
             next:(resp)=>{
                 console.log(resp)
                 this._sweetalertService.alertSuccess()
-                this._route.navigateByUrl('/sign-in')
+                this._route.navigateByUrl('/login/sign-in')
 
                 this.initForm()
 

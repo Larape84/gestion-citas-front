@@ -20,7 +20,7 @@ export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
         }
     } catch (error) {
         inicioSesion.eliminarUsuario();
-        router.navigateByUrl('sign-in');
+        router.navigateByUrl('/login/sign-in');
         return true;
     }
 

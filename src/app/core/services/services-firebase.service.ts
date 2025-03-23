@@ -27,7 +27,9 @@ export class FirebaseService {
 
   getDocumentId(collectionName: string, userId: string): Observable<any> {
     const userRef = doc(this.firestore, `${collectionName}/${userId}`);
-    return docData(userRef, { idField: 'id' });
+    return from(getDoc(userRef).then(docSnap => {
+        return docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
+      }))
   }
 
   createDocumentWithId<T>(collectionName: string, docId: string, data: T): Observable<void> {

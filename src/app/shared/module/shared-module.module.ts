@@ -35,6 +35,7 @@ export const MY_DATE_FORMATS = {
       },
   };
 
+
 @NgModule({
   declarations: [PermisosModuloDirective, DataTablePipe],
   imports: [
@@ -59,6 +60,7 @@ export const MY_DATE_FORMATS = {
     MatDatepickerModule,
     MultiSelectModule,
     MatAutocompleteModule,
+
 
 
 

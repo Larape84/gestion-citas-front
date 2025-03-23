@@ -25,7 +25,7 @@ export const appRoutes: Route[] = [
 
     // Auth routes for guests
     {
-        path: '',
+        path: 'login',
         // canActivate: [NoAuthGuard],
         // canActivateChild: [NoAuthGuard],
         component: LayoutComponent,
@@ -37,11 +37,11 @@ export const appRoutes: Route[] = [
             {path: 'forgot-password', loadChildren: () => import('app/modules/auth/forgot-password/forgot-password.routes')},
             {path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.routes')},
             {path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.routes')},
-            {path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.routes')}
-
+            {path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.routes')},
+            {path: '**', redirectTo: 'sign-in'},
         ]
     },
-
+    {path: '', pathMatch:'full', redirectTo: 'login'},
     // {path: '', pathMatch : 'full', redirectTo: 'sign-in'},
     // Auth routes for authenticated users
     // {
@@ -71,7 +71,7 @@ export const appRoutes: Route[] = [
     // },
 
 
-    {path: '',
+    {path: 'app',
         // canActivate: [AuthGuard],
         component: LayoutComponent,
         resolve: {
@@ -79,7 +79,7 @@ export const appRoutes: Route[] = [
         },
 
         children: [
-            {path: 'app', loadChildren: () => import('app/modules/admin/inicio/inicio.routes')},
+            {path: '', loadChildren: () => import('app/modules/admin/inicio/inicio.routes')},
             {path: 'usuario', loadChildren: () => import('app/modules/admin/usuario/usuario.routes')},
         ]
 
@@ -96,12 +96,21 @@ export const appRoutes: Route[] = [
 
         children: [
             {path: 'codigoQr', loadChildren: () => import('app/modules/admin/codigoQr/codigoQr.routes')},
+            {path: 'scanQr', loadChildren: () => import('app/modules/admin/scanQr/scanQr.routes')},
 
 
         ]
     },
 
 
+    // {
+    //     "site": "gastrosena-55a47",
+    //     "public": "dist/public",
+    //     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    //     "rewrites": [{ "source": "**", "destination": "/index.html" }]
+    //   },
+
+
     // {path: '', redirectTo: 'sign-in'},
-    // {path: '**', pathMatch : 'full', redirectTo: 'sign-in'},
+    {path: '**', pathMatch : 'full', redirectTo: 'login'},
 ];

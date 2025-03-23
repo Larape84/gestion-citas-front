@@ -38,7 +38,7 @@ export class InicioSesionService {
 
     } catch (error) {
         this.eliminarUsuario()
-        this._router.navigateByUrl('sign-in')
+        this._router.navigateByUrl('/login/sign-in')
     }
   }
 
@@ -109,26 +109,12 @@ export class InicioSesionService {
                     "update": true
                 }
             },]
-        return modulo
+        return permisos
     } catch (error) {
-        const modulo = [
-            {
-                "id": 1,
-                "title": "Usuarios",
-                "type": "basic",
-                "icon": "heroicons_outline:user",
-                "link": "/usuarios",
-                "access": {
-                    "read": true,
-                    "create": true,
-                    "delete": true,
-                    "update": true
-                }
-            },]
-        return modulo
 
-        // this.eliminarUsuario();
-        // this._router.navigateByUrl('sign-in')
+
+        this.eliminarUsuario();
+        this._router.navigateByUrl('/login/sign-in')
     }
   }
 
