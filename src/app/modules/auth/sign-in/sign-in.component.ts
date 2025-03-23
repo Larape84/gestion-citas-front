@@ -145,6 +145,12 @@ export class AuthSignInComponent implements OnInit
                     if(keypass === this.signInForm.value.password){
 
 
+                        if(!resp.activo){
+                            this._sweetAlertService.alertInfo({ info:'Lo sentimos, su usuario no se encuentra activo, por favor contacte soporte técnico' })
+                            return
+                        }
+
+
                         console.log(resp)
 
 

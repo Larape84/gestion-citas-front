@@ -18,6 +18,7 @@ import { ValidarSoloLetrasConEspacio } from 'app/shared/Validators/input.Validat
 import { NgxMaskDirective } from 'ngx-mask';
 import { InicioSesionService } from '../sign-in/inicio-sesion.service';
 import { MatSelectModule } from '@angular/material/select';
+import { DateTime } from 'luxon';
 
 @Component({
     selector     : 'auth-sign-up',
@@ -121,6 +122,7 @@ export class AuthSignUpComponent implements OnInit
             centroCosto:['',[Validators.required]],
             contrasena:['',[Validators.required, Validators.minLength(4)]],
             terminosCondiciones:[false,[Validators.required, Validators.requiredTrue]],
+            activo: [false,[]]
            },
        );
     }
@@ -172,8 +174,9 @@ export class AuthSignUpComponent implements OnInit
 
         usuario['nombre']= usuario['nombre'].toUpperCase()
         usuario['apellido']= usuario['apellido'].toUpperCase()
+        usuario['fechaRegistro'] = DateTime.local().toFormat('dd-MM-yyyy');
+        usuario['horaRegistro'] = DateTime.local().toFormat('HH:mm:ss');
 
-        console.log(usuario)
 
         const existeUsuario = await this.validarUsuarioRegistrado();
 

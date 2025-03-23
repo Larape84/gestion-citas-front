@@ -37,6 +37,7 @@
                             <mat-label>Nombres</mat-label>
                             <input class="uppercase"
                                 matInput
+                                autocomplete="off"
                                 [formControlName]="'nombre'">
                                 <mat-error>{{errorService.msgError(signUpForm, 'nombre')}}</mat-error>
                         </mat-form-field>
@@ -46,6 +47,7 @@
                             <input
                                  class="uppercase"
                                 id="company-confirm"
+                                autocomplete="off"
                                 matInput
                                 [formControlName]="'apellido'">
                                 <mat-error>{{errorService.msgError(signUpForm, 'apellido')}}</mat-error>
@@ -57,6 +59,7 @@
                                 inputmode="numeric"
                                 mask="separator.0"
                                 thousandSeparator="."
+                                autocomplete="off"
                                 id="name"
                                 matInput
                                 [formControlName]="'cedula'">
@@ -107,6 +110,7 @@
                             <input
                                 id="password"
                                 matInput
+                                autocomplete="off"
                                 type="password"
                                 [formControlName]="'contrasena'"
                                 #passwordField>

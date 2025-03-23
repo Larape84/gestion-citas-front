@@ -196,6 +196,7 @@ export class ScanQrComponent implements AfterViewInit, OnDestroy {
     this.sweetAlertService.startLoading({})
 
     const hoy = DateTime.local().toFormat('dd-MM-yyyy');
+    const fechaNumero = DateTime.local().toFormat('yyyyMMdd');
     const hora = DateTime.local().toFormat('HH:mm:ss');
 
 
@@ -203,7 +204,7 @@ export class ScanQrComponent implements AfterViewInit, OnDestroy {
     const valorConsulta = this.registroConsulta(result)
 
     if(!!valorConsulta){
-        this._fireService.getDocumentId(hoy, this.registroConsulta(result)).subscribe({
+        this._fireService.getDocumentId('registros', `${hoy} ${valorConsulta}`).subscribe({
             next:(resp)=>{
 
                 console.log(resp, 'que es esto')
@@ -267,10 +268,11 @@ export class ScanQrComponent implements AfterViewInit, OnDestroy {
                                     apellidoAutorizado : this.user.apellido,
                                     idAutorizado : this.user.id,
                                     cargoAutorizado : this.user.cargo,
-                                    idSocicitante : valorConsulta
+                                    idSocicitante : valorConsulta,
+                                    fechaNumero: Number(fechaNumero)
                                 }
 
-                                this._fireService.createDocumentWithId(hoy, valorConsulta, data ).subscribe({
+                                this._fireService.createDocumentWithId('registros', `${hoy} ${valorConsulta}`, data ).subscribe({
                                     next:(resp)=>{
                                         setTimeout(() => {
                                             this.sweetAlertService.alertSuccessWithConfirm().then(()=>{

@@ -97,6 +97,7 @@ export const appRoutes: Route[] = [
         children: [
             {path: 'codigoQr', loadChildren: () => import('app/modules/admin/codigoQr/codigoQr.routes')},
             {path: 'scanQr', loadChildren: () => import('app/modules/admin/scanQr/scanQr.routes')},
+            {path: 'usuarios', loadChildren: () => import('app/modules/admin/panelControl/panel-control.routes')},
 
 
         ]

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentData, DocumentReference, Firestore, addDoc, collection, collectionData, doc, docData , getDoc, setDoc, updateDoc  } from '@angular/fire/firestore';
+import { DocumentData, DocumentReference, Firestore, addDoc, collection, collectionData, doc, docData , getDoc, getDocs, setDoc, updateDoc  } from '@angular/fire/firestore';
 import { from, map, Observable, switchMap } from 'rxjs';
 
 
@@ -21,7 +21,10 @@ export class FirebaseService {
 
   getCollection<T>(collectionName: string): Observable<T[]> {
     const ref = collection(this.firestore, collectionName);
-    return collectionData(ref, { idField: 'id' }) as Observable<T[]>;
+
+     return from(getDocs(ref).then(snapshot =>
+    snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as T))
+  ));
   }
 
 

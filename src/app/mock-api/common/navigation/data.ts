@@ -35,13 +35,13 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:camera',
         link : '/scanQr'
     },
-    // {
-    //     id   : 'example',
-    //     title: 'Remitentes',
-    //     type : 'basic',
-    //     icon : 'heroicons_outline:user-group',
-    //     link : '/app/remitentes'
-    // },
+    {
+        id   : 'usuarioCreado',
+        title: 'Usuarios',
+        type : 'basic',
+        icon : 'heroicons_outline:user-group',
+        link : '/usuarios'
+    },
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
     {
