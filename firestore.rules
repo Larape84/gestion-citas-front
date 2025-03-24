@@ -3,21 +3,23 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
- match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2025, 4, 18);
+   match /{collection}/{document} {
+      allow read: if resource.data.token == "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiTEFSQVBFIiwib3duZXJJZCI6MSwicHJvZmlsZUlkIjoxLCJ0eXBlVXNlciI6InVzZXIiLCJpYXQiOjE3NDI1MDIxNDEsImV4cCI6MTc0MjUwNTc0MX0.X0ptAEuvE-z6TLCsPkoiSdW6LA77pF49QWmEkfcn0vY";
     }
 
-
-
-
+ match /{collection}/{document} {
+      allow write, update, create: if request.resource.data.token == "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiTEFSQVBFIiwib3duZXJJZCI6MSwicHJvZmlsZUlkIjoxLCJ0eXBlVXNlciI6InVzZXIiLCJpYXQiOjE3NDI1MDIxNDEsImV4cCI6MTc0MjUwNTc0MX0.X0ptAEuvE-z6TLCsPkoiSdW6LA77pF49QWmEkfcn0vY";
   }
+
+
+}
 }
 
 service firebase.storage {
   match /b/{bucket}/o {
     match /{allPaths=**} {
-      allow read, write: if
-          request.time < timestamp.date(2025, 4, 19);
+      allow read, write: if false;
     }
   }
 }
+

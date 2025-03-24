@@ -158,7 +158,6 @@ export class AuthSignUpComponent implements OnInit
         this.signUpForm.markAsUntouched()
         this.signUpForm.updateValueAndValidity()
 
-
         const valid = await this.valdarForm()
         console.log(valid)
         if(valid){
@@ -178,7 +177,9 @@ export class AuthSignUpComponent implements OnInit
         usuario['horaRegistro'] = DateTime.local().toFormat('HH:mm:ss');
 
 
-        const existeUsuario = await this.validarUsuarioRegistrado();
+        const existeUsuario = await this.validarUsuarioRegistrado() || false;
+
+        console.log(existeUsuario, 'existeUsuario leoleoleo')
 
         if(existeUsuario){
             this._sweetalertService.alertInfo({info:'El usuario ya se encuentra registrado, por favor iniciar sesión'})
@@ -186,7 +187,6 @@ export class AuthSignUpComponent implements OnInit
             return
         }
 
-        usuario['token'] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiTEFSQVBFIiwib3duZXJJZCI6MSwicHJvZmlsZUlkIjoxLCJ0eXBlVXNlciI6InVzZXIiLCJpYXQiOjE3NDI1MDIxNDEsImV4cCI6MTc0MjUwNTc0MX0.X0ptAEuvE-z6TLCsPkoiSdW6LA77pF49QWmEkfcn0vY"
         usuario['permisos'] = [
                                     {
                                         "id": 1,
@@ -203,7 +203,7 @@ export class AuthSignUpComponent implements OnInit
 
                                 ]
 
-
+                                console.log(usuario, 'usuerio a enviar')
         this._fireService.createDocumentWithId('usuarios', String(usuario.cedula), usuario).subscribe({
             next:(resp)=>{
                 console.log(resp)
@@ -234,6 +234,9 @@ export class AuthSignUpComponent implements OnInit
                     }else{
                         resolve(false)
                     }
+                },
+                error:()=>{
+                    resolve(false)
                 }
             })
 
