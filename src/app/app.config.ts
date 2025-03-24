@@ -1,7 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
 import { provideFuse } from '@fuse';
@@ -15,11 +13,27 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'environments/environment';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
+import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+
+const MY_LUXON_FORMATS = {
+    parse: {
+      dateInput: 'dd/MM/yyyy', // Formato de entrada
+    },
+    display: {
+      dateInput: 'dd/MM/yyyy', // Formato en el input
+      monthYearLabel: 'MMMM yyyy',
+      dateA11yLabel: 'DD',
+      monthYearA11yLabel: 'MMMM yyyy',
+    }
+  };
+
+
 export const appConfig: ApplicationConfig = {
     providers: [
         importProvidersFrom(
-            provideFirebaseApp(() => initializeApp(environment.firebase)), // ✅ Inicializa Firebase correctamente
-            provideFirestore(() => getFirestore()) // ✅ Proveer Firestore
+            provideFirebaseApp(() => initializeApp(environment.firebase)),
+            provideFirestore(() => getFirestore())
         ),
         provideAnimations(),
         provideHttpClient(),
@@ -29,27 +43,41 @@ export const appConfig: ApplicationConfig = {
             withInMemoryScrolling({scrollPositionRestoration: 'enabled'}),
         ),
 
-        // Material Date Adapter
-        {
+
+
+
+
+  {
             provide : DateAdapter,
             useClass: LuxonDateAdapter,
         },
-        // {
-        //     provide : MAT_DATE_FORMATS,
-        //     useValue:
-        //     {
-        //         parse  : {
-        //             dateInput: 'D',
-        //         },
-        //         display: {
-        //             dateInput         : 'DDD',
-        //             monthYearLabel    : 'LLL yyyy',
-        //             dateA11yLabel     : 'DD',
-        //             monthYearA11yLabel: 'LLLL yyyy',
-        //         },
-        //     },
-        // },
-        { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
+        {
+            provide : MAT_DATE_FORMATS,
+            useValue: {
+                parse  : {
+                    dateInput: 'D',
+                    // dateInput: 'DD/MM/YYYY', // Formato de entrada
+
+                },
+                display: {
+                    // dateInput         : 'DDD',
+                    // monthYearLabel    : 'LLL yyyy',
+                    // dateA11yLabel     : 'DD',
+                    // monthYearA11yLabel: 'LLLL yyyy',
+
+                    // dateInput: 'DD/MM/YYYY', // Formato de visualización
+                    // monthYearLabel: 'MMMM YYYY',
+                    // dateA11yLabel: 'LL',
+                    // monthYearA11yLabel: 'MMMM YYYY',
+
+                },
+            },
+
+        },
+        { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+        { provide: MAT_DATE_FORMATS, useValue: MY_LUXON_FORMATS },
+
+
         // Transloco Config
         provideTransloco(),
 

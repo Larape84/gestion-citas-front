@@ -190,7 +190,7 @@ export class UsuarioComponent implements OnDestroy, AfterViewInit {
 
     public initUser(): void {
        this.user =  this._inicioSesionService.obtenerUsuario()
-        console.log( this.user , ' this.user  this.user ')
+
     //    const values = ['email','fullName','phone','username','identification']
 
        this.accountForm = this.fb.group({
@@ -233,7 +233,6 @@ export class UsuarioComponent implements OnDestroy, AfterViewInit {
 
         this._firebase.updateDocumentComplet('usuarios', id, {centroCosto: payload.centro , cargo : payload.profile}).subscribe({
             next:(resp: any)=>{
-                console.log(resp)
                 this._inicioSesionService.asignarUsuarioModulos(resp)
 
                 this._sweetAlertService.alertSuccessWithConfirm().then(()=>{

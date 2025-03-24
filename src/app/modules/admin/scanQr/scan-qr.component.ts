@@ -57,7 +57,6 @@ export class ScanQrComponent implements AfterViewInit, OnDestroy {
 
 
     this.cameras = this.totalCamars
-    console.log( this.totalCamars)
     if (this.totalCamars.length > 0) {
         const camaraBack = this.totalCamars.findIndex(item=>String(item?.label)?.toLowerCase()?.includes('back'))
         if(camaraBack!==-1){
@@ -68,7 +67,7 @@ export class ScanQrComponent implements AfterViewInit, OnDestroy {
       this.ngModelCam = this.selectedCameraId
 
       this.startScanner();
-      this.sweetAlertService.stopLoading()
+
     }else{
 
         this.sweetAlertService.stopLoading()
@@ -97,29 +96,19 @@ export class ScanQrComponent implements AfterViewInit, OnDestroy {
 
     setTimeout(() => {
 
-        if (this.scanner.isScanning) {
-            this.scanner.stop().then(()=>{
-                this.scanner.start(
-                    this.selectedCameraId,
-                    { fps: 10, qrbox: { width: 250, height: 250 } },
-                    (decodedText) => this.onScanSuccess(decodedText),
-                    (errorMessage) => {})
-                    this.scanner.clear()
-                    this.scanner.resume()
-            })
+        this.scanner.start(
+            this.selectedCameraId,
+            { fps: 10, qrbox: { width: 250, height: 250 } },
+            (decodedText) => this.onScanSuccess(decodedText),
+            (errorMessage) => {})
+            this.scanner.clear()
+            setTimeout(() => {
+                this.sweetAlertService.stopLoading()
+            }, 1000);
+                // this.scanner.resume()
 
 
-        }else{
 
-            this.scanner.start(
-                this.selectedCameraId,
-                { fps: 10, qrbox: { width: 250, height: 250 } },
-                (decodedText) => this.onScanSuccess(decodedText),
-                (errorMessage) => {})
-                this.scanner.clear()
-                this.scanner.resume()
-
-        }
 
 
 
@@ -131,12 +120,11 @@ export class ScanQrComponent implements AfterViewInit, OnDestroy {
 
   public cargarImagn(event): void {
     const file = event.target.files[0];
-    console.log(file)
     this.scanner.stop().then(()=>{
 
         if (file) {
           this.scanner.scanFileV2(file, true)
-            .then(decodedText => {console.log("Código escaneado:", decodedText)
+            .then(decodedText => {
                 this.onScanSuccess(decodedText.decodedText)
 
             })
@@ -207,7 +195,7 @@ export class ScanQrComponent implements AfterViewInit, OnDestroy {
         this._fireService.getDocumentId('registros', `${hoy} ${valorConsulta}`).subscribe({
             next:(resp)=>{
 
-                console.log(resp, 'que es esto')
+
                 if(!!resp){
                     this.sweetAlertService.stopLoading();
 
@@ -234,7 +222,14 @@ export class ScanQrComponent implements AfterViewInit, OnDestroy {
                     }, 200);
 
                     return
-                }else{
+                }
+
+
+
+            },
+            error:()=>{
+
+
 
                     this.sweetAlertService.stopLoading();
 
@@ -301,11 +296,13 @@ export class ScanQrComponent implements AfterViewInit, OnDestroy {
 
 
 
-                }
 
 
 
-            }})
+
+            }}
+
+        )
     }else{
 
         this.sweetAlertService.stopLoading();

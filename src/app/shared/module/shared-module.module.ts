@@ -101,7 +101,7 @@ export const MY_DATE_FORMATS = {
 providers: [
     { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl },
     provideNgxMask(),
-    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+
 
 
   ]

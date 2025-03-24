@@ -159,7 +159,6 @@ export class AuthSignUpComponent implements OnInit
         this.signUpForm.updateValueAndValidity()
 
         const valid = await this.valdarForm()
-        console.log(valid)
         if(valid){
             return
         }
@@ -179,7 +178,6 @@ export class AuthSignUpComponent implements OnInit
 
         const existeUsuario = await this.validarUsuarioRegistrado() || false;
 
-        console.log(existeUsuario, 'existeUsuario leoleoleo')
 
         if(existeUsuario){
             this._sweetalertService.alertInfo({info:'El usuario ya se encuentra registrado, por favor iniciar sesión'})
@@ -203,10 +201,8 @@ export class AuthSignUpComponent implements OnInit
 
                                 ]
 
-                                console.log(usuario, 'usuerio a enviar')
         this._fireService.createDocumentWithId('usuarios', String(usuario.cedula), usuario).subscribe({
             next:(resp)=>{
-                console.log(resp)
                 this._sweetalertService.alertSuccess()
                 this._route.navigateByUrl('/login/sign-in')
 
@@ -215,7 +211,6 @@ export class AuthSignUpComponent implements OnInit
 
             },
             error:(e)=>{
-                console.log(e)
             }
         })
 
@@ -228,7 +223,6 @@ export class AuthSignUpComponent implements OnInit
             const usuario = this.signUpForm.value
             this._fireService.getDocumentId('usuarios', usuario.cedula).subscribe({
                 next:(res)=>{
-                    console.log(res, 'resresres')
                     if(!!res){
                         resolve(true)
                     }else{

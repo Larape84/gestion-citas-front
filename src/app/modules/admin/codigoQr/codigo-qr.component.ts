@@ -38,7 +38,6 @@ export class CodigoQrComponent  implements OnInit{
 
         const qrElement = this.qrcodeElement.nativeElement.querySelector('div.qrleo canvas');
 
-        console.log(qrElement)
 
         if (qrElement) {
           const image = qrElement.toDataURL('image/png');

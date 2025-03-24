@@ -102,7 +102,6 @@ export class CompactLayoutComponent implements OnInit, OnDestroy, AfterViewInit
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((navigation: Navigation) =>
             {
-                console.log(navigation,'navigation')
                 this.navigation = navigation;
             });
 

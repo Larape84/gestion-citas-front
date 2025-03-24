@@ -55,7 +55,6 @@ export class PanelControlComponent implements OnInit {
                 this.paginador.pageSize =  this.dataSource.data.length ?? 50
                 this.dataSource.paginator = this.paginador
 
-                console.log(resp)
                 if(loading){
                     this._sweetalertService.stopLoading()
                 }

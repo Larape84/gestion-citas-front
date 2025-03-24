@@ -93,5 +93,22 @@ getCollection<T>(collectionName: string): Observable<T[]> {
 
 
 
+  getDocumentsByRange(collectionName: string, field: string, minValue: number, maxValue: number): Observable<any> {
+    const ref = collection(this.firestore, collectionName);
+    const q = query(ref,
+        where(field, ">=", minValue),
+        where(field, "<=", maxValue),
+        where('token', "==", this.tokenSesion),
+    );
+    return from(getDocs(q).then(snapshot =>
+        snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    ));
+}
+
+
+
+
+
+
 
 }

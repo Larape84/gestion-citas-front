@@ -21,7 +21,7 @@ export class Sweetalert2Service {
 
   public startLoading({ title = 'Cargando', html = 'Por favor espere' }): void {
 
-    Swal.fire({ title, html, allowOutsideClick: false, timer: 500000, didOpen: () => { Swal.showLoading() }, })
+    Swal.fire({ title, html, allowOutsideClick: false, allowEscapeKey:false, backdrop:true, timer: 500000, didOpen: () => { Swal.showLoading() }, })
 
   }
 
@@ -35,6 +35,7 @@ export class Sweetalert2Service {
   public async alertConfirmation(callBack: Function): Promise<void> {
     Swal.fire({
       allowOutsideClick: false,
+      backdrop: true,
       title: '¿Estas seguro?',
       text: "Esta acción no se puede deshacer",
       icon: 'warning',
@@ -106,7 +107,8 @@ export class Sweetalert2Service {
     // this.stopLoading();
 
     Swal.fire({
-      allowOutsideClick: true,
+      allowOutsideClick: false,
+      allowEscapeKey:false,
       backdrop: true,
       title: 'Error!',
       text: param?.text || "Su solicitud no pudo ser procesada, por favor intente nuevamente",
@@ -119,7 +121,8 @@ export class Sweetalert2Service {
 
   public alertInfo({ info = 'Lo sentimos, no se encontraron registros en la consulta' }): void {
     Swal.fire({
-      allowOutsideClick: true,
+      allowOutsideClick: false,
+      allowEscapeKey:false,
       backdrop: true,
       text: info,
       icon: 'info',

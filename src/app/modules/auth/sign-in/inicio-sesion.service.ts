@@ -34,7 +34,6 @@ export class InicioSesionService {
     try {
         const userBase64 =  sessionStorage.getItem(btoa('userToken'))
         const userLogin = JSON.parse(atob(userBase64))
-        console.log(userBase64)
         return userLogin
 
     } catch (error) {

@@ -42,6 +42,13 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:user-group',
         link : '/usuarios'
     },
+    {
+        id   : 'registros',
+        title: 'Registros',
+        type : 'basic',
+        icon : 'heroicons_outline:chart-pie',
+        link : '/registros'
+    }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
     {
