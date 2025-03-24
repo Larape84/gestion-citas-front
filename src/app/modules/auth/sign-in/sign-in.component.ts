@@ -39,6 +39,7 @@ export class AuthSignInComponent implements OnInit
     signInForm: UntypedFormGroup;
     showAlert: boolean = false;
 
+
     /**
      * Constructor
      */
@@ -157,8 +158,8 @@ export class AuthSignInComponent implements OnInit
                         console.log(resp)
 
 
-                        localStorage.setItem('accessToken', resp.token );
-                        this._inicioSesion.asignarUsuarioModulos(resp, resp.permisos)
+                        // localStorage.setItem('accessToken', resp.token );
+                        this._inicioSesion.asignarUsuarioModulos(resp)
                         this._finalizaSecion.startSessionTimer()
                         const redirectURL = '/app';
                         this._router.navigateByUrl(redirectURL);

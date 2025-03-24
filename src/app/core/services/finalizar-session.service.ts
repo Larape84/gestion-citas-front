@@ -23,7 +23,7 @@ export class FinalizarSessionService {
           this.sessionTimeout = setInterval(() => {
           this.resetSessionTimer()
           this.logout();
-        }, 10000);
+        }, 900000);
         // 900000
       }
 

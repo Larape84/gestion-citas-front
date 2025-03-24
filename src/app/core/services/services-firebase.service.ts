@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentData, DocumentReference, Firestore, addDoc, collection, collectionData, doc, docData , getDoc, getDocs, setDoc, updateDoc  } from '@angular/fire/firestore';
+import { DocumentData, DocumentReference, Firestore, addDoc, collection, collectionData, doc, docData , getDoc, getDocs, query, setDoc, updateDoc, where  } from '@angular/fire/firestore';
 import { from, map, Observable, switchMap } from 'rxjs';
 
 
@@ -8,6 +8,8 @@ import { from, map, Observable, switchMap } from 'rxjs';
 
 })
 export class FirebaseService {
+
+    private readonly tokenSesion = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiTEFSQVBFIiwib3duZXJJZCI6MSwicHJvZmlsZUlkIjoxLCJ0eXBlVXNlciI6InVzZXIiLCJpYXQiOjE3NDI1MDIxNDEsImV4cCI6MTc0MjUwNTc0MX0.X0ptAEuvE-z6TLCsPkoiSdW6LA77pF49QWmEkfcn0vY'
 
     encryptedText: string = '';
     decryptedText: string = '';
@@ -19,40 +21,43 @@ export class FirebaseService {
 
 ) {}
 
-  getCollection<T>(collectionName: string): Observable<T[]> {
+getCollection<T>(collectionName: string): Observable<T[]> {
     const ref = collection(this.firestore, collectionName);
-
-     return from(getDocs(ref).then(snapshot =>
-    snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as T))
-  ));
+    const q = query(ref, where("token", "==", this.tokenSesion));
+    return from(getDocs(q).then(snapshot =>
+      snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as T))
+    ));
   }
 
 
   getDocumentId(collectionName: string, userId: string): Observable<any> {
-    const userRef = doc(this.firestore, `${collectionName}/${userId}`);
-    return from(getDoc(userRef).then(docSnap => {
-        return docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
-      }))
+    const userRef = collection(this.firestore, collectionName);
+    const q = query(userRef, where("__name__", "==", String(userId)), where("token", "==", this.tokenSesion));
+  return from(getDocs(q).then(querySnapshot => {
+    if (!querySnapshot.empty) {
+      return querySnapshot.docs[0].data();
+    }
+    return null;
+  }));
   }
 
   createDocumentWithId<T>(collectionName: string, docId: string, data: T): Observable<void> {
-    const collectionRef = collection(this.firestore, collectionName); // Referencia a la colección
-    const docRef = doc(collectionRef, docId); // Documento dentro de la colección
-    const dataWithId = { ...data, id: docId }; // Agregar el ID dentro del documento
-
-    return from(setDoc(docRef, dataWithId)); // setDoc reemplaza addDoc
+    const collectionRef = collection(this.firestore, collectionName);
+    const docRef = doc(collectionRef, docId);
+    const dataWithId = { ...data, id: docId, token: this.tokenSesion };
+    return from(setDoc(docRef, dataWithId));
   }
 
   updateDocument(collectionName: string, docId: string, data: any): Observable<void> {
     const docRef = doc(this.firestore, `${collectionName}/${docId}`);
-    return from(updateDoc(docRef, data));
+    return from(updateDoc(docRef, {...data, token: this.tokenSesion}));
   }
 
 
   updateDocumentComplet<T>(collectionName: string, docId: string, data: any): Observable<T> {
     const docRef : DocumentReference<DocumentData, DocumentData> = doc(this.firestore, `${collectionName}/${docId}`);
 
-    return from(updateDoc(docRef, data)).pipe(
+    return from(updateDoc(docRef, {...data, token: this.tokenSesion})).pipe(
       switchMap(() => from(getDoc(docRef))), // Obtener el documento después de actualizarlo
       map((docSnap) => {
         if (docSnap.exists()) {

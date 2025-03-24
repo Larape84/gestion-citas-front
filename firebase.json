@@ -7,12 +7,6 @@
   {
     "site": "sena-food-gourmet",
     "public": "dist/public",
-    "header" : [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://sena-food-gourmet.web.app/"
-        }
-      ],
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [{ "source": "**", "destination": "/index.html" }]
 

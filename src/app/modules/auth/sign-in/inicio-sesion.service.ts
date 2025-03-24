@@ -12,12 +12,12 @@ export class InicioSesionService {
   ) { }
 
 
-  public asignarUsuarioModulos(usuario: any, permisos: any):void {
+  public asignarUsuarioModulos(usuario: any):void {
     const usuarioBtao = JSON.stringify(usuario)
     sessionStorage.setItem(btoa('userToken'), btoa(usuarioBtao))
 
-    const permisosBtao = JSON.stringify(permisos)
-    sessionStorage.setItem(btoa('userModules'), btoa(permisosBtao))
+    // const permisosBtao = JSON.stringify(permisos)
+    // sessionStorage.setItem(btoa('userModules'), btoa(permisosBtao))
   }
 
 
@@ -34,6 +34,7 @@ export class InicioSesionService {
     try {
         const userBase64 =  sessionStorage.getItem(btoa('userToken'))
         const userLogin = JSON.parse(atob(userBase64))
+        console.log(userBase64)
         return userLogin
 
     } catch (error) {
@@ -94,21 +95,6 @@ export class InicioSesionService {
     try {
         const permisosBase64 =  sessionStorage.getItem(btoa('userModules'))
         const permisos = JSON.parse(atob(permisosBase64)) ?? []
-
-        const modulo = [
-            {
-                "id": 1,
-                "title": "Usuarios",
-                "type": "basic",
-                "icon": "heroicons_outline:user",
-                "link": "/usuarios",
-                "access": {
-                    "read": true,
-                    "create": true,
-                    "delete": true,
-                    "update": true
-                }
-            },]
         return permisos
     } catch (error) {
 

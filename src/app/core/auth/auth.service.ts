@@ -87,17 +87,25 @@ export class AuthService{
 
         return new Promise ((resolve)=>{
 
-            if (!localStorage.getItem('accessToken')){
+            try {
+                const userBase64 =  sessionStorage.getItem(btoa('userToken'))
+                const userLogin = JSON.parse(atob(userBase64))
+                if(!!userLogin){
+                    resolve()
+                }else{
                 this._inicioSesion.eliminarUsuario()
-                this._router.navigate(['/login/sign-in']);
+                this._router.navigateByUrl('/login/sign-in')
+                resolve()
+                }
+
+            } catch (error) {
+                this._inicioSesion.eliminarUsuario()
+                this._router.navigateByUrl('/login/sign-in')
                 resolve()
             }
 
-            const payload = {
-                token: localStorage.getItem('accessToken')
-            }
 
-            resolve()
+
             // this._httpClient.post(this._appSettings.singIn.refreshToken,payload).subscribe({
             //     next:(resp:any)=>{
             //         const {data} = resp
@@ -127,7 +135,7 @@ export class AuthService{
         }
         this._httpClient.post(this._appSettings.singIn.refreshToken,payload).subscribe((resp: any)=>{
             const {data} = resp
-            this._inicioSesion.asignarUsuarioModulos(data.user, data.permissions)
+            this._inicioSesion.asignarUsuarioModulos(data.user)
             return of(true)
         },(e)=>{
 

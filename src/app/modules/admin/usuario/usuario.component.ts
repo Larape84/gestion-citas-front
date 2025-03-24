@@ -234,7 +234,7 @@ export class UsuarioComponent implements OnDestroy, AfterViewInit {
         this._firebase.updateDocumentComplet('usuarios', id, {centroCosto: payload.centro , cargo : payload.profile}).subscribe({
             next:(resp: any)=>{
                 console.log(resp)
-                this._inicioSesionService.asignarUsuarioModulos(resp, resp.permisos)
+                this._inicioSesionService.asignarUsuarioModulos(resp)
 
                 this._sweetAlertService.alertSuccessWithConfirm().then(()=>{
                     this.initUser();
