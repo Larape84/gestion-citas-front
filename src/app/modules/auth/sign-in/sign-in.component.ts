@@ -126,7 +126,9 @@ export class AuthSignInComponent implements OnInit
             return
         }
 
-        this._sweetAlertService.startLoading({})
+        // this._sweetAlertService.startLoading({})
+
+        this._router.navigateByUrl('/app')
 
 
 
