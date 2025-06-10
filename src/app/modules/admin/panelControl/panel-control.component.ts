@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { FirebaseService } from 'app/core/services/services-firebase.service';
 import { Sweetalert2Service } from 'app/core/services/sweetalert2.service';
 import { UtilityService } from 'app/core/services/utility.service';
 import { SharedModuleModule } from 'app/shared/module/shared-module.module';
@@ -24,7 +23,6 @@ export class PanelControlComponent implements OnInit {
 
     constructor(
         private _sweetalertService : Sweetalert2Service,
-        private _fireService: FirebaseService,
         private _utilService: UtilityService
     ){}
 
@@ -49,17 +47,7 @@ export class PanelControlComponent implements OnInit {
             new MatTableDataSource([])
         }
 
-        this._fireService.getCollection('usuarios').subscribe({
-            next:(resp)=>{
-                this.dataSource = new MatTableDataSource(resp || [])
-                this.paginador.pageSize =  this.dataSource.data.length ?? 50
-                this.dataSource.paginator = this.paginador
 
-                if(loading){
-                    this._sweetalertService.stopLoading()
-                }
-            }
-        })
     }
 
 
@@ -101,11 +89,7 @@ export class PanelControlComponent implements OnInit {
 
         this._sweetalertService.startLoading({})
 
-        this._fireService.updateDocument('usuarios',usuario.id, usuario ).subscribe({
-            next:()=>{
-                this._sweetalertService.alertSuccess()
-            }
-        })
+
 
     }
 }

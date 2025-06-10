@@ -6,8 +6,8 @@
         <div class="w-full flex flex-col col-span-2">
             <div class="w-full px-3 mx-auto sm:mx-0">
                 <!-- Logo -->
-                <div class="w-12">
-                    <img src="assets/images/logoSena.png" alt="">
+                <div class="w-12 h-12">
+                    <!-- <img src="assets/images/logoSena.png" alt=""> -->
 
                 </div>
 
@@ -72,37 +72,9 @@
 
 
 
-                        <!-- Company field -->
-                        <mat-form-field class="w-full">
-                            <mat-label>Cargo</mat-label>
 
-                            <mat-select [formControlName]="'cargo'" >
-                                <mat-option *ngFor="let item of cargos"  [value]="item">{{item}}</mat-option>
-                            </mat-select>
-                            <!-- <input
-                                id="company-confirm"
-                                matInput
-                                class="uppercase"
-                                [formControlName]="'cargo'"> -->
-                                <mat-error>{{errorService.msgError(signUpForm, 'cargo')}}</mat-error>
 
-                        </mat-form-field>
 
-                        <mat-form-field class="w-full">
-                            <mat-label>Centro de costo</mat-label>
-                            <!-- <input
-                                id="company-confirm"
-                                matInput
-                                class="uppercase"
-                                [formControlName]="'centroCosto'"> -->
-
-                                <mat-select [formControlName]="'centroCosto'" >
-                                    <mat-option *ngFor="let item of centros"  [value]="item">{{item}}</mat-option>
-                                </mat-select>
-
-                                <mat-error>{{errorService.msgError(signUpForm, 'centroCosto')}}</mat-error>
-
-                        </mat-form-field>
 
                           <!-- Password field -->
                           <mat-form-field class="w-full">
@@ -177,7 +149,7 @@
         <div class="hidden md:flex w-full items-center justify-center">
 
             <div class="w-90">
-                <img src="assets/images/servrest.png" alt="">
+                <img src="assets/images/citations_001.png" alt="">
             </div>
 
 

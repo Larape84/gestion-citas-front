@@ -16,8 +16,7 @@ export class InicioSesionService {
     const usuarioBtao = JSON.stringify(usuario)
     sessionStorage.setItem(btoa('userToken'), btoa(usuarioBtao))
 
-    // const permisosBtao = JSON.stringify(permisos)
-    // sessionStorage.setItem(btoa('userModules'), btoa(permisosBtao))
+
   }
 
 
@@ -103,14 +102,6 @@ export class InicioSesionService {
     }
   }
 
-//   public validarPermiso(): void{
-//    const rutaActual = this._router.url;
-//    const permisosBase64 =  sessionStorage.getItem(btoa('userModules'))
-//    const permisos = JSON.parse(atob(permisosBase64)) ?? []
-//    if(!permisos.filter(item=>item.link === rutaActual).length){
-//     this._router.navigateByUrl('/app')
-//    }
 
-//   }
 
 }

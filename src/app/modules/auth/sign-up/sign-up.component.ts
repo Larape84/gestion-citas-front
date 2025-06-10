@@ -12,7 +12,6 @@ import { Router, RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
-import { FirebaseService } from 'app/core/services/services-firebase.service';
 import { Sweetalert2Service } from 'app/core/services/sweetalert2.service';
 import { ValidarSoloLetrasConEspacio } from 'app/shared/Validators/input.Validator';
 import { NgxMaskDirective } from 'ngx-mask';
@@ -39,57 +38,14 @@ export class AuthSignUpComponent implements OnInit
     };
     signUpForm: UntypedFormGroup;
     showAlert: boolean = false;
-    public cargos = [
-'Aseador(a) G10',
-'Instructor G20',
-'Conductor G10',
-'Tecnico G02',
-'Secretaria G02',
-'Trabajador de Campo G10',
-'Profesional G02',
-'Profesional G04',
-'Auxiliar G01',
-'Profesional G01',
-'Oficial Mantto Gral.G10',
-'Profesional G06',
-'Instructor G18',
-'Instructor G19',
-'Operario Mtto Gral.G10',
-'Instructor G12',
-'Profesional G08',
-'Instructor G17',
-'Instructor G11',
-'Instructor G13',
-'Instructor G14',
-'Instructor G10',
-'Profesional G03',
-'Subdirector de Centro G02',
-'Instructor G16',
-'Instructor G15',
-'Secretaria G03',
-'Profesional G09',
-'Aprendiz Sena',
-'Aseador(a) G04',
-'Instructor G09',
-'Instructor G07',
-'Oficinista G02',
-'Profesional G10',
-'Tecnico G03',
-'Tecnico G01',
-'Auxiliar G02'
-    ]
 
-    public centros = [
-        'CENTRO INDUSTRIAL Y DE AVIACION',
-        'CENTRO NACIONAL COLOMBO ALEMAN',
-    ]
+
 
     /**
      * Constructor
      */
     constructor(
         private _formBuilder: UntypedFormBuilder,
-        private _fireService : FirebaseService,
         public errorService : ErrorService,
         private _sweetalertService :Sweetalert2Service,
         private _inicioSesion : InicioSesionService,
@@ -176,14 +132,10 @@ export class AuthSignUpComponent implements OnInit
         usuario['horaRegistro'] = DateTime.local().toFormat('HH:mm:ss');
 
 
-        const existeUsuario = await this.validarUsuarioRegistrado() || false;
 
 
-        if(existeUsuario){
-            this._sweetalertService.alertInfo({info:'El usuario ya se encuentra registrado, por favor iniciar sesión'})
-            this._route.navigateByUrl('/login/sign-in')
-            return
-        }
+
+
 
         usuario['permisos'] = [
                                     {
@@ -201,41 +153,11 @@ export class AuthSignUpComponent implements OnInit
 
                                 ]
 
-        this._fireService.createDocumentWithId('usuarios', String(usuario.cedula), usuario).subscribe({
-            next:(resp)=>{
-                this._sweetalertService.alertSuccess()
-                this._route.navigateByUrl('/login/sign-in')
 
-                this.initForm()
-
-
-            },
-            error:(e)=>{
-            }
-        })
 
 
     }
 
 
-    public validarUsuarioRegistrado(): Promise<boolean>{
-        return new Promise((resolve)=>{
-            const usuario = this.signUpForm.value
-            this._fireService.getDocumentId('usuarios', usuario.cedula).subscribe({
-                next:(res)=>{
-                    if(!!res){
-                        resolve(true)
-                    }else{
-                        resolve(false)
-                    }
-                },
-                error:()=>{
-                    resolve(false)
-                }
-            })
 
-
-
-        })
-    }
 }

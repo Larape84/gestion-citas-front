@@ -20,7 +20,6 @@ export class AppComponent
 
     )
     {
-        // this._inicioSesion.eliminarUsuario();
-        // this._router.navigateByUrl('sign-in')
+
     }
 }

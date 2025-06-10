@@ -7,13 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
-import { AuthService } from 'app/core/auth/auth.service';
 import { InicioSesionService } from './inicio-sesion.service';
-import { FirebaseService } from 'app/core/services/services-firebase.service';
-import { ValidarSoloLetrasConEspacio } from 'app/shared/Validators/input.Validator';
 import { ErrorService } from 'app/core/services/error.service';
 import { NgxMaskDirective } from 'ngx-mask';
 import { Sweetalert2Service } from 'app/core/services/sweetalert2.service';
@@ -48,7 +45,6 @@ export class AuthSignInComponent implements OnInit
         private _formBuilder: UntypedFormBuilder,
         private _router: Router,
         private _inicioSesion: InicioSesionService,
-        private _fireService : FirebaseService,
         public errorService : ErrorService,
         private _sweetAlertService : Sweetalert2Service,
         private _finalizaSecion : FinalizarSessionService
@@ -131,58 +127,6 @@ export class AuthSignInComponent implements OnInit
         }
 
         this._sweetAlertService.startLoading({})
-
-
-
-
-
-
-        // Hide the alert
-
-        this._fireService.getDocumentId('usuarios', this.signInForm.value.username ).subscribe({
-            next:(resp)=>{
-
-                if(!!resp){
-                    this._sweetAlertService.stopLoading()
-                    const keypass = resp.contrasena
-
-                    if(keypass === this.signInForm.value.password){
-
-
-                        if(!resp.activo){
-                            this._sweetAlertService.alertInfo({ info:'Lo sentimos, su usuario no se encuentra activo, por favor contacte soporte técnico' })
-                            return
-                        }
-
-
-
-
-                        // localStorage.setItem('accessToken', resp.token );
-                        this._inicioSesion.asignarUsuarioModulos(resp)
-                        this._finalizaSecion.startSessionTimer()
-                        const redirectURL = '/app';
-                        this._router.navigateByUrl(redirectURL);
-
-
-
-                        // this._router.navigateByUrl('app')
-
-                    }else{
-                        this._sweetAlertService.stopLoading()
-                        this.errorForm()
-                    }
-
-                }else{
-                    this._sweetAlertService.stopLoading()
-                    this.errorForm()
-                }
-
-            },
-            error:()=>{
-                this._sweetAlertService.stopLoading()
-                this.errorForm()
-            }
-        })
 
 
 

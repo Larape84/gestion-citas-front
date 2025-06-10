@@ -110,7 +110,7 @@
                                         <!-- <input formControlName="centro" type="text" matInput autocomplete="off"> -->
 
                                         <mat-select formControlName="centro" placeholder="">
-                                            <mat-option *ngFor="let item of centros" [value]="item">{{item}}</mat-option>
+                                            <mat-option *ngFor="let item of []" [value]="item">{{item}}</mat-option>
                                         </mat-select>
 
 
@@ -128,7 +128,7 @@
                                         <!-- <input formControlName="profile" type="text" matInput autocomplete="off"> -->
 
                                         <mat-select formControlName="profile" placeholder="">
-                                            <mat-option *ngFor="let item of cargos" [value]="item">{{item}}</mat-option>
+                                            <mat-option *ngFor="let item of  []" [value]="item">{{item}}</mat-option>
                                         </mat-select>
                                         <mat-error>{{errorService.msgError(accountForm, 'profile')}}</mat-error>
 

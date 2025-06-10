@@ -9,8 +9,6 @@ import { provideIcons } from 'app/core/icons/icons.provider';
 import { provideTransloco } from 'app/core/transloco/transloco.provider';
 import { mockApiServices } from 'app/mock-api';
 import { MY_DATE_FORMATS } from './shared/module/shared-module.module';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'environments/environment';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
@@ -31,10 +29,6 @@ const MY_LUXON_FORMATS = {
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        importProvidersFrom(
-            provideFirebaseApp(() => initializeApp(environment.firebase)),
-            provideFirestore(() => getFirestore())
-        ),
         provideAnimations(),
         provideHttpClient(),
         provideEnvironmentNgxMask(),

@@ -5,33 +5,21 @@
     <div class="border border-gray-300 rounded-md divide-x px-2 paddin grid grid-cols-1 md:grid-cols-2 bg-white">
         <div class="w-full flex flex-col px-2">
             <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
-                <!-- Logo -->
-                <div class="w-12">
-                    <img src="assets/images/logoSena.png" alt="">
+
+                <div class="w-12 h-14">
+                    <!-- <img src="assets/images/logoSena.png" alt=""> -->
 
                 </div>
 
-                <!-- Title -->
+
                 <div class="md:mt-2 text-4xl font-extrabold tracking-tight leading-tight">Iniciar sesión
                 </div>
                 <div class="flex items-baseline mt-0.5 font-medium">
                     <div>Por favor, ingrese sus datos</div>
-                    <!-- <a
-                        class="ml-1 text-primary-500 hover:underline"
-                        [routerLink]="['/sign-up']">Sign up
-                    </a> -->
+
                 </div>
 
-                <!-- Alert -->
-                <!-- <fuse-alert
-                    class="mt-8"
-                    [appearance]="'outline'"
-                    [showIcon]="false"
-                    [type]="'info'">
-                    You are browsing <strong>Fuse Demo</strong>. Click on the "Sign in" button to access the Demo and Documentation.
-                </fuse-alert> -->
 
-                <!-- Alert -->
                 <fuse-alert
                     class="mt-8"
                     *ngIf="showAlert"
@@ -42,13 +30,13 @@
                     {{alert.message}}
                 </fuse-alert>
 
-                <!-- Sign in form -->
+
                 <form
                     class="mt-8"
                     [formGroup]="signInForm"
                     #signInNgForm="ngForm">
 
-                    <!-- Email field -->
+
                     <mat-form-field class="w-full">
                         <mat-label>Nro de documento</mat-label>
                         <input
@@ -63,7 +51,7 @@
 
                     </mat-form-field>
 
-                    <!-- Password field -->
+
                     <mat-form-field class="w-full">
                         <mat-label>Contraseña</mat-label>
                         <input
@@ -91,21 +79,16 @@
 
                     </mat-form-field>
 
-                    <!-- Actions -->
+
                     <div class="inline-flex items-center justify-between w-full mt-1.5">
-                        <!-- <mat-checkbox
-                            class="-ml-2"
-                            [color]="'primary'"
-                            [formControlName]="'rememberMe'">
-                            Recordar
-                        </mat-checkbox> -->
+
                         <a
                             class="text-md font-medium text-primary-500 hover:underline"
                             [routerLink]="['/login/sign-up']">¿Desea crear su usuario?
                         </a>
                     </div>
 
-                    <!-- Submit button -->
+
                     <button
                         class="fuse-mat-button-large w-full mt-6"
                         mat-flat-button
@@ -130,7 +113,7 @@
         <div class="hidden md:flex w-full items-center justify-center">
 
             <div class="w-90">
-                <img src="assets/images/servrest.png" alt="">
+                <img src="assets/images/citations_001.png" alt="">
             </div>
 
 
