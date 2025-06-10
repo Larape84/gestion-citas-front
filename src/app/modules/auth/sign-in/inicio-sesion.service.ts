@@ -30,15 +30,16 @@ export class InicioSesionService {
 
 
   public obtenerUsuario(): any{
-    try {
-        const userBase64 =  sessionStorage.getItem(btoa('userToken'))
-        const userLogin = JSON.parse(atob(userBase64))
-        return userLogin
 
-    } catch (error) {
-        this.eliminarUsuario()
-        this._router.navigateByUrl('/login/sign-in')
-    }
+    // try {
+    //     const userBase64 =  sessionStorage.getItem(btoa('userToken'))
+    //     const userLogin = JSON.parse(atob(userBase64))
+    //     return userLogin
+
+    // } catch (error) {
+    //     this.eliminarUsuario()
+    //     this._router.navigateByUrl('/login/sign-in')
+    // }
   }
 
 

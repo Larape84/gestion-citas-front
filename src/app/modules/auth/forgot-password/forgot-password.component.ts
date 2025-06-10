@@ -79,26 +79,7 @@ export class AuthForgotPasswordComponent implements OnInit, OnDestroy
 
               this._sweetAlert.startLoading({})
 
-              this._userService.restablecerContrasena(payload).pipe(takeUntil(this.unsuscribe$)).subscribe({
-                  next:(resp)=>{
-                      this.forgotPasswordForm.controls['usuario'].setValue('');
-                      this.forgotPasswordForm.controls['usuario'].markAsUntouched();
-                      this.forgotPasswordForm.controls['usuario'].markAsPending()
-                      this.forgotPasswordForm.controls['usuario'].updateValueAndValidity();
 
-                      const param = {text : 'Contraseña restablecida, consulte su correo electrónico para acceder al sistema'}
-                      this._sweetAlert.alertSuccessWithConfirm(param).then(()=>{
-                        this.route.navigateByUrl('/sign-in')
-                      })
-                  },
-                  error:()=>{
-                      this.forgotPasswordForm.controls['usuario'].setValue('')
-                      this.forgotPasswordForm.controls['usuario'].markAsPending()
-                      this.forgotPasswordForm.controls['usuario'].updateValueAndValidity();
-
-                      this._sweetAlert.alertError();
-                  }
-              })
 
         }
 

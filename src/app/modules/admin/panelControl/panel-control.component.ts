@@ -28,8 +28,7 @@ export class PanelControlComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.listarUsuarios()
-        this._utilService.getWidth().subscribe({next:(resp)=>{this.viewMode = resp}});
+         this._utilService.getWidth().subscribe({next:(resp)=>{this.viewMode = resp}});
     }
 
 

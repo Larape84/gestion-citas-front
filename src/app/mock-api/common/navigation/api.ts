@@ -21,7 +21,6 @@ export class NavigationMockApi
      */
     constructor(
         private _fuseMockApiService: FuseMockApiService,
-        private _AuthService: AuthService,
         private _FuseNavigationService: FuseNavigationService
 
   )
@@ -32,12 +31,12 @@ export class NavigationMockApi
     }
 
     public getModulos(): any {
-        this._AuthService._modules$.subscribe({next:(resp:any)=>{
-            this._compactNavigation = resp
-            this.registerHandlers();
-            // this.navigationService.get()
+        this.navigationService.get()
+        this.registerHandlers();
+        // this._AuthService._modules$.subscribe({next:(resp:any)=>{
+        //     this._compactNavigation = compactNavigation
 
-        }})
+        // }})
     }
 
     // -----------------------------------------------------------------------------------------------------

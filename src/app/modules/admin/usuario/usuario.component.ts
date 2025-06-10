@@ -33,10 +33,8 @@ export class UsuarioComponent implements OnDestroy, AfterViewInit {
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private fb: FormBuilder,
-        private _inicioSesionService : InicioSesionService,
-        private _sweetAlertService: Sweetalert2Service,
-        private _userService: UserServicesService,
-        public errorService: ErrorService
+         private _sweetAlertService: Sweetalert2Service,
+         public errorService: ErrorService
     )
     {}
 
@@ -140,7 +138,7 @@ export class UsuarioComponent implements OnDestroy, AfterViewInit {
 
 
     public initUser(): void {
-       this.user =  this._inicioSesionService.obtenerUsuario()
+    //    this.user =  this._inicioSesionService.obtenerUsuario()
 
     //    const values = ['email','fullName','phone','username','identification']
 
@@ -151,14 +149,7 @@ export class UsuarioComponent implements OnDestroy, AfterViewInit {
         centro:[this.user.centroCosto,[Validators.required]]
        })
 
-    //    values.forEach((control)=>{
-    //     this.accountForm.controls[control].setValue(this.user[control])
-    //    })
 
-
-    //    this.accountForm.controls['profile'].setValue(this.user.profile.name)
-
-    //    this.accountForm.controls['dependency'].setValue(this.user.dependency.description)
 
        const disabled = ['nombres', 'identification']
 

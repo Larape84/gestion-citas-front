@@ -24,7 +24,6 @@ export const initialDataResolver = () =>
         quickChatService.getChats(),
         shortcutsService.getAll(),
         navigationService.get(),
-        // navigationService.getRutas()
     ]);
 
 

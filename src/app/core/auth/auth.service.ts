@@ -21,7 +21,6 @@ export class AuthService{
      */
     constructor(
         private _httpClient: HttpClient,
-        private _userService: UserService,
         private _appSettings: AppSettingsService,
         private _router : Router,
         private _inicioSesion: InicioSesionService
@@ -87,36 +86,28 @@ export class AuthService{
 
         return new Promise ((resolve)=>{
 
-            try {
-                const userBase64 =  sessionStorage.getItem(btoa('userToken'))
-                const userLogin = JSON.parse(atob(userBase64))
-                if(!!userLogin){
-                    resolve()
-                }else{
-                this._inicioSesion.eliminarUsuario()
-                this._router.navigateByUrl('/login/sign-in')
-                resolve()
-                }
+            resolve()
 
-            } catch (error) {
-                this._inicioSesion.eliminarUsuario()
-                this._router.navigateByUrl('/login/sign-in')
-                resolve()
-            }
-
-
-
-            // this._httpClient.post(this._appSettings.singIn.refreshToken,payload).subscribe({
-            //     next:(resp:any)=>{
-            //         const {data} = resp
-            //         this._inicioSesion.asignarUsuarioModulos(data.user, data.permissions)
+            // try {
+            //     const userBase64 =  sessionStorage.getItem(btoa('userToken'))
+            //     const userLogin = JSON.parse(atob(userBase64))
+            //     if(!!userLogin){
             //         resolve()
-            //     },error:()=>{
-            //         this._inicioSesion.eliminarUsuario()
-            //         this._router.navigate(['/sign-in']);
-            //         resolve()
+            //     }else{
+            //     this._inicioSesion.eliminarUsuario()
+            //     this._router.navigateByUrl('/login/sign-in')
+            //     resolve()
             //     }
-            // })
+
+            // } catch (error) {
+            //     this._inicioSesion.eliminarUsuario()
+            //     this._router.navigateByUrl('/login/sign-in')
+            //     resolve()
+            // }
+
+
+
+
         })
 
 
@@ -124,25 +115,25 @@ export class AuthService{
 
     public consultarToken():Observable<boolean> {
 
-
-        if (!localStorage.getItem('accessToken')){
-            localStorage.removeItem('accessToken')
-            this._router.navigate(['/sign-out']);
-            return of(false)
-        }
-        const payload = {
-            token: localStorage.getItem('accessToken')
-        }
-        this._httpClient.post(this._appSettings.singIn.refreshToken,payload).subscribe((resp: any)=>{
-            const {data} = resp
-            this._inicioSesion.asignarUsuarioModulos(data.user)
             return of(true)
-        },(e)=>{
+        // if (!localStorage.getItem('accessToken')){
+        //     localStorage.removeItem('accessToken')
+        //     this._router.navigate(['/sign-out']);
+        //     return of(false)
+        // }
+        // const payload = {
+        //     token: localStorage.getItem('accessToken')
+        // }
+        // this._httpClient.post(this._appSettings.singIn.refreshToken,payload).subscribe((resp: any)=>{
+        //     const {data} = resp
+        //     this._inicioSesion.asignarUsuarioModulos(data.user)
+        //     return of(true)
+        // },(e)=>{
 
-            localStorage.removeItem('accessToken')
-            this._router.navigate(['/sign-out']);
-            return of(false)
-        })
+        //     localStorage.removeItem('accessToken')
+        //     this._router.navigate(['/sign-out']);
+        //     return of(false)
+        // })
 
     }
 

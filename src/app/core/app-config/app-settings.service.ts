@@ -27,30 +27,10 @@ export class AppSettingsService {
 
     }
 
-    public Perfiles = {
-        listarPerfiles : EndPoints.uri('api/select/profile')
-    }
-
-    public Dependencias = {
-        base : EndPoints.uri('api/dependency'),
-        dependenciasActicas : EndPoints.uri('api/dependency/enabled')
-
-    }
 
 
-    public Remitentes = {
-        base: EndPoints.uri('api/sender'),
-        tipoDocumento: EndPoints.uri('api/select/documet-type'),
-        tipoRemitente: EndPoints.uri('api/select/applicant-type'),
-        selectRemitenteActivo: EndPoints.uri('api/sender/enabled'),
 
-    }
 
-    public correspondenciaRecibida = {
-        selectSerie:EndPoints.uri('api/select/serie'),
-        selectSubSerie:EndPoints.uri('api/select/sub-serie'),
-        base: EndPoints.uri('api/correspondence-sent')
-    }
 
 
 }

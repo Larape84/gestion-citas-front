@@ -15,8 +15,7 @@ export class AppComponent
      * Constructor
      */
     constructor(
-        private _router: Router,
-        private _inicioSesion: InicioSesionService
+
 
     )
     {
