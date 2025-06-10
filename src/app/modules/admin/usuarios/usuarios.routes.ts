@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
-import { PanelControlComponent } from './panel-control.component';
+import { UsuariosComponent } from './usuarios.component';
+
 
 export default [
     {
         path     : '',
-        component: PanelControlComponent,
+        component: UsuariosComponent,
     },
 ] as Routes;

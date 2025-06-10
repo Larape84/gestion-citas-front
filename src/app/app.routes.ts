@@ -92,7 +92,11 @@ export const appRoutes: Route[] = [
         },
 
         children: [
-            {path: 'usuarios', loadChildren: () => import('app/modules/admin/panelControl/panel-control.routes')},
+            {path: 'usuarios', loadChildren: () => import('app/modules/admin/usuarios/usuarios.routes')},
+            {path: 'agendas', loadChildren: () => import('app/modules/admin/agendas/agendas.routes')},
+            {path: 'entidades', loadChildren: () => import('app/modules/admin/entidades/entidades.routes')},
+            {path: 'citas', loadChildren: () => import('app/modules/admin/citas/citas.routes')},
+
         ]
     },
 
