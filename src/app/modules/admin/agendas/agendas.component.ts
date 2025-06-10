@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { SharedModuleModule } from 'app/shared/module/shared-module.module';
 
 @Component({
@@ -8,6 +10,31 @@ import { SharedModuleModule } from 'app/shared/module/shared-module.module';
   standalone:true,
   imports: [SharedModuleModule]
 })
-export class AgendasComponent {
+export class AgendasComponent implements OnInit, AfterViewInit, OnDestroy {
+
+      @ViewChild(MatPaginator) paginador : MatPaginator
+
+        public displayedColumns = [ 'fecha_hora', 'tipo_comida', 'info_pedidor', 'cargo_pedidor', 'info_Autizado', 'cargoAutorizado']
+        public dataSource =  new MatTableDataSource([])
+
+
+        ngOnInit(): void {
+
+        }
+
+
+        ngAfterViewInit(): void {
+
+        }
+
+
+        ngOnDestroy(): void {
+
+        }
+
+
+        constructor(){}
+
+
 
 }
