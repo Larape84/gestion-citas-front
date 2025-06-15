@@ -17,7 +17,7 @@ export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
         const token = sessionStorage.getItem('userToken')
 
         if(token){
-            router.navigateByUrl('')
+            router.navigateByUrl('/app')
             return false
         }else{
             return true
