@@ -97,6 +97,14 @@
                                     </mat-form-field>
 
 
+                                      <mat-form-field class="w-full fuse-mat-dense">
+                                        <mat-label>Tipo de documento</mat-label>
+                                        <input   formControlName="tipoDocumento" type="text" matInput autocomplete="off">
+                                        <mat-error>{{errorService.msgError(accountForm, 'tipoDocumento')}}</mat-error>
+
+                                    </mat-form-field>
+
+
 
                                     <mat-form-field class="w-full fuse-mat-dense">
                                         <mat-label>identificación</mat-label>
@@ -105,9 +113,30 @@
 
                                     </mat-form-field>
 
+                                      <mat-form-field class="w-full fuse-mat-dense">
+                                        <mat-label>Telefono</mat-label>
+                                        <input  formControlName="telefono" type="text" matInput autocomplete="off">
+                                        <mat-error>{{errorService.msgError(accountForm, 'telefono')}}</mat-error>
+
+                                    </mat-form-field>
+
+                                      <mat-form-field class="w-full fuse-mat-dense">
+                                        <mat-label>Email</mat-label>
+                                        <input  formControlName="email" type="text" matInput autocomplete="off">
+                                        <mat-error>{{errorService.msgError(accountForm, 'email')}}</mat-error>
+
+                                    </mat-form-field>
+
+
+                                       <mat-form-field class="w-full fuse-mat-dense">
+                                        <mat-label>Tipo de usuario</mat-label>
+                                        <input  formControlName="tipoUsuario" type="text" matInput autocomplete="off">
+                                        <mat-error>{{errorService.msgError(accountForm, 'tipoUsuario')}}</mat-error>
+
+                                    </mat-form-field>
+<!--
                                     <mat-form-field class="w-full fuse-mat-dense">
                                         <mat-label>Centro de formación</mat-label>
-                                        <!-- <input formControlName="centro" type="text" matInput autocomplete="off"> -->
 
                                         <mat-select formControlName="centro" placeholder="">
                                             <mat-option *ngFor="let item of []" [value]="item">{{item}}</mat-option>
@@ -116,23 +145,14 @@
 
                                         <mat-error>{{errorService.msgError(accountForm, 'centro')}}</mat-error>
 
-                                    </mat-form-field>
+                                    </mat-form-field> -->
 
 
 
 
 
 
-                                    <mat-form-field class="w-full fuse-mat-dense">
-                                        <mat-label>Cargo</mat-label>
-                                        <!-- <input formControlName="profile" type="text" matInput autocomplete="off"> -->
 
-                                        <mat-select formControlName="profile" placeholder="">
-                                            <mat-option *ngFor="let item of  []" [value]="item">{{item}}</mat-option>
-                                        </mat-select>
-                                        <mat-error>{{errorService.msgError(accountForm, 'profile')}}</mat-error>
-
-                                    </mat-form-field>
 
                                     <div class="col-span-2 w-full flex justify-end">
 

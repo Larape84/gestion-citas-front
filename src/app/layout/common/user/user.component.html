@@ -24,9 +24,9 @@
         <button (click)="irPerfil()" mat-menu-item>
             <span class="flex flex-col leading-none py-2">
                 <!-- <span>Usuario</span> -->
-                <span class="mt-1.5 text-md font-medium">{{user?.nombre}} {{user?.apellido}}</span>
+                <span class="mt-1.5 text-md font-medium">{{user?.nombre}}</span>
                 <!-- <span class="mt-1.5 text-md font-medium">{{user?.email}}</span> -->
-                <span class="mt-1.5 text-md font-bold">{{user?.cargo}}</span>
+                <span class="mt-1.5 text-md font-bold">{{user?.tipoUsuario}}</span>
                 <div class="flex gap-2 items-center mt-2">
 
                     <mat-icon [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>

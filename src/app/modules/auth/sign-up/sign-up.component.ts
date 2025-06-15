@@ -111,47 +111,8 @@ export class AuthSignUpComponent implements OnInit
     {
 
 
-        this.signUpForm.markAsUntouched()
-        this.signUpForm.updateValueAndValidity()
-
-        const valid = await this.valdarForm()
-        if(valid){
-            return
-        }
 
 
-        this._sweetalertService.startLoading({})
-
-
-        this.showAlert = false;
-        const usuario = this.signUpForm.value
-
-        usuario['nombre']= usuario['nombre'].toUpperCase()
-        usuario['apellido']= usuario['apellido'].toUpperCase()
-        usuario['fechaRegistro'] = DateTime.local().toFormat('dd-MM-yyyy');
-        usuario['horaRegistro'] = DateTime.local().toFormat('HH:mm:ss');
-
-
-
-
-
-
-
-        usuario['permisos'] = [
-                                    {
-                                        "id": 1,
-                                        "title": "Usuarios",
-                                        "type": "basic",
-                                        "icon": "heroicons_outline:user",
-                                        "link": "/usuarios",
-                                        "access": {
-                                            "admin": false,
-                                            "gestor":false,
-                                            "usuario": true
-                                        }
-                                    },
-
-                                ]
 
 
 

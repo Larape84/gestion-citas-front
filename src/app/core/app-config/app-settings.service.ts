@@ -12,7 +12,11 @@ export class AppSettingsService {
 
 
     public iniciarSesion = {
-        base : EndPoints.uri('/usuario/login'),
+        base : EndPoints.uri('usuario/login'),
+    }
+
+    public entidad = {
+        base : EndPoints.uri('entidades/registrar-entidad'),
     }
 
 

@@ -47,7 +47,7 @@ export class Sweetalert2Service {
       customClass: {
         actions: 'flex-row-reverse gap-2',
         cancelButton: 'rounded-full w-26 bg-gray-500 ring-0',
-        confirmButton: 'rounded-full w-26 ring-0'
+        confirmButton: 'rounded-full w-26 ring-0 bg-[#3175C0]'
       }
     }).then((result: any) => {
       if (result.isConfirmed) {
@@ -83,22 +83,24 @@ export class Sweetalert2Service {
 
 
 
-  public alertSuccess(text?: string, accion?:any): void {
-    text = text || 'Solicitud realizada correctamente'
-    const alert = Swal.fire({
-      allowOutsideClick: true,
-      backdrop: true,
-      title: 'Correcto!',
-      html: text,
-      icon: 'success',
-      confirmButtonColor: '#3085d6',
-      customClass: {
-        confirmButton: 'rounded-full w-20 bg-blue-400 ring-0'
-      }
-    }).then(()=>{
-        if(!!accion){
-            accion();
-        }
+  public alertSuccess(text?: string): Promise<void> {
+    return new Promise((resolve)=>{
+
+        text = text || 'Solicitud realizada correctamente'
+        const alert = Swal.fire({
+          allowOutsideClick: true,
+          backdrop: true,
+          title: 'Correcto!',
+          html: text,
+          icon: 'success',
+          confirmButtonColor: '#3085d6',
+          customClass: {
+            confirmButton: 'rounded-full w-20 bg-blue-400 ring-0'
+          }
+        }).then(()=>{
+            resolve()
+        })
+
     })
   }
 
@@ -111,7 +113,7 @@ export class Sweetalert2Service {
       allowEscapeKey:false,
       backdrop: true,
       title: 'Error!',
-      text: param?.text || "Su solicitud no pudo ser procesada, por favor intente nuevamente",
+      text: param?.text  || param?.error?.message || param?.message || "Su solicitud no pudo ser procesada, por favor intente nuevamente",
       icon: 'error',
       customClass: {
         confirmButton: 'rounded-full w-20 bg-gray-400 ring-0'

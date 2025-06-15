@@ -64,8 +64,8 @@ export class AuthSignInComponent implements OnInit
     {
         // Create the form
         this.signInForm = this._formBuilder.group({
-            username     : ['dmartinez@fintra.co', [Validators.required,]],
-            password  : ['jm1234', Validators.required],
+            username     : ['jmsalazar1995@gmail.com', [Validators.required,]],
+            password  : ['jm95140812', Validators.required],
 
         });
 
@@ -146,8 +146,8 @@ export class AuthSignInComponent implements OnInit
 
             },
             error:(e: HttpErrorResponse)=>{
-                const err : any[] = e.error.errors
-                this._sweetAlertService.alertInfo({info:err.join(' ; ') })
+
+                this._sweetAlertService.alertError(e)
             }
         })
 

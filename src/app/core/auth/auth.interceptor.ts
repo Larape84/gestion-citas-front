@@ -11,11 +11,21 @@ import { catchError, Observable, throwError } from 'rxjs';
  * @param next
  */
 export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> =>
-{
+    {
+
+
+    if (req.url.includes('/assets/')) {
+        return next(req);
+    }
+
+
     const authService = inject(AuthService);
 
     // Clone the request object
     let newReq = req.clone();
+
+
+
 
 
 

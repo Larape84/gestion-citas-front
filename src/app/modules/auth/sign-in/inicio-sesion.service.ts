@@ -24,9 +24,7 @@ export class InicioSesionService {
 
 
   public eliminarUsuario(): void {
-   sessionStorage.removeItem(btoa('userModules'))
-   sessionStorage.removeItem(btoa('userToken'))
-   localStorage.removeItem('accessToken')
+   sessionStorage.removeItem('userToken')
   }
 
 

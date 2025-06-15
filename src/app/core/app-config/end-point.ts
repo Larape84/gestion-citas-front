@@ -7,7 +7,8 @@ export class EndPoints {
      * @description: Url para los endpoints
      */
     static uri(url: string): string {
-        return environment.apiUrl + url;
+        const pacth = 'gestion-citas'
+        return  `${environment.apiUrl}/${pacth}/${url}`;
     }
 
 

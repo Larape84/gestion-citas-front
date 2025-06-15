@@ -138,20 +138,32 @@ export class UsuarioComponent implements OnDestroy, AfterViewInit {
 
 
     public initUser(): void {
-    //    this.user =  this._inicioSesionService.obtenerUsuario()
 
-    //    const values = ['email','fullName','phone','username','identification']
+        try {
+
+            const user = sessionStorage.getItem('userToken')
+            const parseUser = JSON.parse(user)
+            this.user = parseUser
+
+        } catch (error) {
+
+        }
+
+
+
 
        this.accountForm = this.fb.group({
-        nombres:[`${this.user.nombre} ${this.user.apellido}`,[]],
-        profile:[this.user.cargo,[Validators.required]],
-        identification:[this.user.cedula,[Validators.required]],
-        centro:[this.user.centroCosto,[Validators.required]]
+        nombres:[`${this.user.nombre}`,[Validators.required]],
+        identification:[this.user.numDocumento,[Validators.required]],
+        tipoDocumento:[this.user.tipoDocumento,[Validators.required]],
+        tipoUsuario:[this.user.tipoUsuario,[Validators.required]],
+        telefono:[this.user.telefono,[Validators.required]],
+        email:[this.user.email,[Validators.required]],
        })
 
 
 
-       const disabled = ['nombres', 'identification']
+       const disabled = ['nombres', 'identification', 'tipoDocumento', 'tipoUsuario']
 
        disabled.forEach((control)=>{
         this.accountForm.controls[control].disable()

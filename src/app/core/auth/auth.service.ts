@@ -39,12 +39,24 @@ export class AuthService{
      */
     set accessToken(token: string)
     {
-        localStorage.setItem('accessToken', token);
+        localStorage.setItem('userToken', token);
     }
 
     get accessToken(): string
     {
-        return localStorage.getItem('accessToken') ?? '';
+
+        try {
+            const user = sessionStorage.getItem('userToken') || '';
+            const parseUser = JSON.parse(user)
+            const token = parseUser.token
+            return token;
+
+        } catch (error) {
+
+             return '';
+
+        }
+
     }
 
     // -----------------------------------------------------------------------------------------------------

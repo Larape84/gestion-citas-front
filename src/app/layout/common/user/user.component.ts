@@ -102,7 +102,19 @@ export class UserComponent implements OnInit, OnDestroy
     }
 
     public obtenerUsuario():void {
-        // this.user = this._inicioSesion.obtenerUsuario();
+
+         try {
+
+            const user = sessionStorage.getItem('userToken')
+            const parseUser = JSON.parse(user)
+            this.user = parseUser
+
+        } catch (error) {
+
+        }
+
+
+
         this._changeDetectorRef.detectChanges();
     }
 

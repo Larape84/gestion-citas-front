@@ -1,1 +1,71 @@
-<p>modal-entidades works!</p>
+<div class="w-full flex flex-col gap-2">
+
+    <section class="flex flex-row items-center gap-2">
+
+        <mat-icon class="icon-size-12 text-gray-00">info</mat-icon>
+
+        <span class="text-3xl font-semibold text-gray-700">{{!data ? 'Crear entidad' : 'Actualizar entidad' }}</span>
+
+    </section>
+
+
+    <hr class="my-0">
+
+      <form [formGroup]="formEntidad" class="flex flex-col ">
+
+        <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Nit de la entidad</mat-label>
+            <input type="text" formControlName="nitEntidad" matInput >
+            <mat-error>{{errorService.msgError(formEntidad, 'nitEntidad')}}</mat-error>
+        </mat-form-field>
+
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Nombre de la entidad</mat-label>
+            <input type="text" formControlName="nombre" matInput >
+              <mat-error>{{errorService.msgError(formEntidad, 'nombre')}}</mat-error>
+
+        </mat-form-field>
+
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Dirección de la entidad</mat-label>
+            <input type="text" formControlName="direccion" matInput >
+              <mat-error>{{errorService.msgError(formEntidad, 'direccion')}}</mat-error>
+
+        </mat-form-field>
+
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Telefono</mat-label>
+            <input type="text" formControlName="telefono" matInput >
+              <mat-error>{{errorService.msgError(formEntidad, 'telefono')}}</mat-error>
+
+        </mat-form-field>
+
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Tipo</mat-label>
+            <input type="text" formControlName="tipo" matInput >
+              <mat-error>{{errorService.msgError(formEntidad, 'tipo')}}</mat-error>
+
+        </mat-form-field>
+
+
+
+
+    </form>
+
+     <hr class="my-0">
+
+      <section class="flex w-full justify-evenly">
+
+        <button (click)="guardar()" [disabled]="formEntidad.invalid" type="button" mat-raised-button color="primary">
+            Crear entidad
+        </button>
+
+        <button (click)="cerrar()" class="bg-gray-200" mat-stroked-button type="button">
+            Cerrar
+        </button>
+
+    </section>
+
+
+
+</div>
