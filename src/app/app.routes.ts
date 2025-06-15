@@ -1,6 +1,9 @@
-import { Route } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { initialDataResolver } from 'app/app.resolvers';
 import { LayoutComponent } from 'app/layout/layout.component';
+import { AuthGuard } from './core/auth/guards/auth.guard';
+import { NoAuthGuard } from './core/auth/guards/noAuth.guard';
+import { inject } from '@angular/core';
 
 // @formatter:on
 /* eslint-disable max-len */
@@ -13,7 +16,7 @@ export const appRoutes: Route[] = [
     // Auth routes for guests
     {
         path: 'login',
-        // canActivate: [NoAuthGuard],
+        canActivate: [NoAuthGuard],
         // canActivateChild: [NoAuthGuard],
         component: LayoutComponent,
         data: {
@@ -59,7 +62,7 @@ export const appRoutes: Route[] = [
 
 
     {path: 'app',
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         component: LayoutComponent,
         resolve: {
             initialData: initialDataResolver

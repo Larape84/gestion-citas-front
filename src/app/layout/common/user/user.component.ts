@@ -102,7 +102,7 @@ export class UserComponent implements OnInit, OnDestroy
     }
 
     public obtenerUsuario():void {
-        this.user = this._inicioSesion.obtenerUsuario();
+        // this.user = this._inicioSesion.obtenerUsuario();
         this._changeDetectorRef.detectChanges();
     }
 

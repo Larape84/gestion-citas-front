@@ -71,15 +71,6 @@ export class AuthService{
         return this._httpClient.post('api/auth/reset-password', password);
     }
 
-    /**
-     * Sign in
-     *
-     * @param credentials
-     */
-    signIn(credentials: { username: string; password: string }): Observable<any>
-    {
-        return this._httpClient.post(this._appSettings.singIn.base, credentials);
-    }
 
 
     public esperarToken():Promise<void> {

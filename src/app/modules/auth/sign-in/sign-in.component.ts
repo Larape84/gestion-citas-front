@@ -15,6 +15,7 @@ import { ErrorService } from 'app/core/services/error.service';
 import { NgxMaskDirective } from 'ngx-mask';
 import { Sweetalert2Service } from 'app/core/services/sweetalert2.service';
 import { FinalizarSessionService } from 'app/core/services/finalizar-session.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector     : 'auth-sign-in',
@@ -63,8 +64,8 @@ export class AuthSignInComponent implements OnInit
     {
         // Create the form
         this.signInForm = this._formBuilder.group({
-            username     : ['', [Validators.required,]],
-            password  : ['', Validators.required],
+            username     : ['dmartinez@fintra.co', [Validators.required,]],
+            password  : ['jm1234', Validators.required],
 
         });
 
@@ -122,13 +123,34 @@ export class AuthSignInComponent implements OnInit
         const valid = await this.valdarForm()
 
 
+
+
         if(valid){
             return
         }
 
-        // this._sweetAlertService.startLoading({})
+        const userLogin = {
+            email: this.signInForm.controls['username'].value,
+            password: this.signInForm.controls['password'].value
+            }
 
-        this._router.navigateByUrl('/app')
+        this._sweetAlertService.startLoading({})
+
+        this._inicioSesion.iniciarSesion(userLogin).subscribe({
+            next:(res)=>{
+
+                this._sweetAlertService.stopLoading()
+
+                this._inicioSesion.asignarUsuarioModulos(res.data)
+                this._router.navigateByUrl('/app')
+
+            },
+            error:(e: HttpErrorResponse)=>{
+                const err : any[] = e.error.errors
+                this._sweetAlertService.alertInfo({info:err.join(' ; ') })
+            }
+        })
+
 
 
 

@@ -14,14 +14,7 @@ export class UserServicesService {
   ) { }
 
 
-  public crearUsuario(usuario: any): Observable<any>{
-    return this._httpClient.post(this._appSettings.Usuario.base, {...usuario})
-  }
 
-
-  public listarUsuario(): Observable<any>{
-    return this._httpClient.get(this._appSettings.Usuario.base)
-  }
 
 
 

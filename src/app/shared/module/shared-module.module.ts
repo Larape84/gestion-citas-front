@@ -14,7 +14,6 @@ import { CustomMatPaginatorIntl } from '../Class/paginador.class';
 import {MatMenuModule} from '@angular/material/menu';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { PermisosModuloDirective } from '../directives/permisoModulo.directive';
 import { DataTablePipe } from '../pipes/data.table.pipe';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { InputSwitchModule } from 'primeng/inputswitch';
@@ -37,7 +36,7 @@ export const MY_DATE_FORMATS = {
 
 
 @NgModule({
-  declarations: [PermisosModuloDirective, DataTablePipe],
+  declarations: [DataTablePipe],
   imports: [
     CommonModule,
     MatIconModule,
@@ -86,7 +85,6 @@ export const MY_DATE_FORMATS = {
     NgxMaskDirective,
     NgxMaskPipe,
     MatSidenavModule,
-    PermisosModuloDirective,
     DataTablePipe,
     MatTooltipModule,
     InputSwitchModule,

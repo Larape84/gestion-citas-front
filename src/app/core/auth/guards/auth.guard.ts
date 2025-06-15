@@ -5,26 +5,23 @@ import { of, skip, switchMap } from 'rxjs';
 
 export const AuthGuard: CanActivateFn = (route, state) =>
 {
-    const router: Router = inject(Router);
-    const token = inject(AuthService)
-    // Check the authentication status
-    return token.consultarToken()
+    try {
 
-    // return inject(AuthService).consultarToken().pipe(
-    //     switchMap((authenticated) =>
-    //     {
-    //         // If the user is not authenticated...
-    //         if ( !authenticated )
-    //         {
-    //             // Redirect to the sign-in page with a redirectUrl param
-    //             const redirectURL = state.url === '/sign-out' ? '' : `redirectURL=${state.url}`;
-    //             const urlTree = router.parseUrl(`sign-in?${redirectURL}`);
+        const token = sessionStorage.getItem('userToken')
 
-    //             return of(urlTree);
-    //         }
+        if(token){
+            return true
+        }else{
+            return false
+        }
 
-    //         // Allow the access
-    //         return of(true);
-    //     }),
-    // );
+
+    } catch (error) {
+
+        return false
+    }
+
+
+
+
 };

@@ -6,22 +6,27 @@ import { of, switchMap } from 'rxjs';
 
 export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
 {
-    const router: Router = inject(Router);
-    const inicioSesion: InicioSesionService = inject(InicioSesionService)
-
 
     try {
-        const isLoggedIn = inicioSesion.isLoggedIn();
-        if (isLoggedIn) {
-            router.navigateByUrl('/app');
-            return false;
+
+
+        const router = inject(Router);
+
+
+
+        const token = sessionStorage.getItem('userToken')
+
+        if(token){
+            router.navigateByUrl('')
+            return false
         }else{
             return true
         }
+
+
     } catch (error) {
-        inicioSesion.eliminarUsuario();
-        router.navigateByUrl('/login/sign-in');
-        return true;
+
+        return true
     }
 
 
