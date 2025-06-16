@@ -18,6 +18,7 @@ export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) =>
 
         if(token){
             router.navigateByUrl('/app')
+            // /login/sign-in
             return false
         }else{
             return true
