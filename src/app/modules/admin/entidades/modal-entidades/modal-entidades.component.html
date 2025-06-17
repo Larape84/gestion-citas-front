@@ -40,12 +40,12 @@
 
         </mat-form-field>
 
-          <mat-form-field class="fuse-mat-dense w-full">
+          <!-- <mat-form-field class="fuse-mat-dense w-full">
             <mat-label>Tipo</mat-label>
             <input type="text" formControlName="tipo" matInput >
               <mat-error>{{errorService.msgError(formEntidad, 'tipo')}}</mat-error>
 
-        </mat-form-field>
+        </mat-form-field> -->
 
 
 
@@ -56,8 +56,12 @@
 
       <section class="flex w-full justify-evenly">
 
-        <button (click)="guardar()" [disabled]="formEntidad.invalid" type="button" mat-raised-button color="primary">
+        <button *ngIf="!data" (click)="guardar()" [disabled]="formEntidad.invalid" type="button" mat-raised-button color="primary">
             Crear entidad
+        </button>
+
+         <button *ngIf="!!data" (click)="actualizar()" [disabled]="formEntidad.invalid" type="button" mat-raised-button color="primary">
+            Actualizar entidad
         </button>
 
         <button (click)="cerrar()" class="bg-gray-200" mat-stroked-button type="button">

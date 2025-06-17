@@ -1,1 +1,100 @@
-<p>modal-agendas works!</p>
+<div class="w-full flex flex-col gap-2">
+
+    <section class="flex flex-row items-center gap-2">
+
+        <mat-icon class="icon-size-12 text-gray-00">info</mat-icon>
+
+        <span class="text-3xl font-semibold text-gray-700">{{'Crear agenda'  }}</span>
+
+    </section>
+
+
+    <hr class="my-0">
+
+      <form [formGroup]="formAgenda" class="flex flex-col ">
+
+        <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Nombre de la agenda</mat-label>
+            <input type="text" formControlName="nombreAgenda" matInput >
+            <mat-error>{{errorService.msgError(formAgenda, 'nombreAgenda')}}</mat-error>
+        </mat-form-field>
+
+
+
+         <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Entidad</mat-label>
+            <!-- <input type="text" formControlName="entidad" matInput > -->
+
+            <mat-select formControlName="entidad" placeholder="">
+                <mat-option *ngFor="let entidad of entidades" [value]="entidad">{{entidad.nombre}}</mat-option>
+            </mat-select>
+
+
+            <mat-error>{{errorService.msgError(formAgenda, 'entidad')}}</mat-error>
+        </mat-form-field>
+
+
+
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Tipo de agenda</mat-label>
+            <!-- <input type="text" formControlName="tipoAgenda" matInput > -->
+
+            <mat-select formControlName="tipoAgenda"  >
+                <mat-option  value="">{{'Seleccione'}} </mat-option>
+                 <mat-option  value="PRESENCIAL">{{'PRESENCIAL'}} </mat-option>
+                  <mat-option  value="VIRTUAL">{{'VIRTUAL'}} </mat-option>
+            </mat-select>
+
+              <mat-error>{{errorService.msgError(formAgenda, 'tipoAgenda')}}</mat-error>
+
+        </mat-form-field>
+
+
+        <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Fecha de la agenda</mat-label>
+            <input formControlName="fechaAgenda" matInput [matDatepicker]="picker">
+
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>{{errorService.msgError(formAgenda, 'fechaAgenda')}}</mat-error>
+
+        </mat-form-field>
+
+
+
+
+
+
+
+
+          <!-- <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Tipo</mat-label>
+            <input type="text" formControlName="tipo" matInput >
+              <mat-error>{{errorService.msgError(formEntidad, 'tipo')}}</mat-error>
+
+        </mat-form-field> -->
+
+
+
+
+    </form>
+
+     <hr class="my-0">
+
+      <section class="flex w-full justify-evenly">
+
+        <button  (click)="guardar()" [disabled]="formAgenda.invalid" type="button" mat-raised-button color="primary">
+            Crear Agenda
+        </button>
+
+
+
+        <button (click)="cerrar()" class="bg-gray-200" mat-stroked-button type="button">
+            Cerrar
+        </button>
+
+    </section>
+
+
+
+</div>

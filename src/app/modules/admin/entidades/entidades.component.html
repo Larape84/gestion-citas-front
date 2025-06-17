@@ -50,42 +50,63 @@
                 <table  mat-table [dataSource]="dataSource" >
 
 
-                    <ng-container matColumnDef="fecha_hora">
-                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Fecha de registro</th>
-                        <td mat-cell *matCellDef="let element">
-                            <div class="flex flex-col">
 
-                                <span>
-                                    {{element.fecha}}
-                                </span>
-                                <span>
-                                    {{element.hora}}
-                                </span>
+
+
+                      <ng-container matColumnDef="editar">
+                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Nit</th>
+                        <td mat-cell *matCellDef="let element">
+                            <div class="w-full flex items-center">
+
+
+                                <button type="button" mat-icon-button [matMenuTriggerFor]="menuRef">
+
+                                     <mat-icon class="text-gray-400 icon-size-8">menu</mat-icon>
+
+                                </button>
+
+                                <mat-menu #menuRef="matMenu">
+                                      <button mat-menu-item  type="button" (click)="crearEntidad(element)">
+                                    <mat-icon class="text-gray-400 icon-size-8">edit</mat-icon>
+                                    <span>Editar Entidad</span>
+                                </button>
+
+                                <button mat-menu-item  type="button" (click)="crearAgenda(element)">
+                                    <mat-icon class="text-gray-400 icon-size-8">assignment</mat-icon>
+                                    <span>Crear Agenda</span>
+                                </button>
+
+
+                                </mat-menu>
+
+
+
 
                             </div>
+
                         </td>
                       </ng-container>
 
 
-                      <ng-container matColumnDef="tipo_comida">
-                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Tipo de comida</th>
-                        <td mat-cell *matCellDef="let element"> {{element.comida}} </td>
+
+
+                      <ng-container matColumnDef="nitEntidad">
+                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Nit</th>
+                        <td mat-cell *matCellDef="let element"> {{element.nitEntidad}} </td>
                       </ng-container>
 
 
 
-                    <ng-container matColumnDef="info_pedidor">
-                      <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Funcionario</th>
+                    <ng-container matColumnDef="nombre">
+                      <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Entidad</th>
                       <td mat-cell *matCellDef="let element">
 
                         <div class="flex flex-col">
 
                             <span>
-                                {{element.nombre_apellidoPedidor}}
+                                {{element.nombre}}
                             </span>
-                            <span>
-                                {{element.cedulaPedidor}}
-                            </span>
+
 
                         </div>
 
@@ -95,17 +116,15 @@
 
 
 
-                      <ng-container matColumnDef="cargo_pedidor">
-                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Cargo del funcionario</th>
+                      <ng-container matColumnDef="direccion">
+                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Dirección</th>
                         <td mat-cell *matCellDef="let element">
                             <div class="flex flex-col">
 
                                 <span>
-                                    {{element.centro_Pedidor}}
+                                    {{element.direccion}}
                                 </span>
-                                <span>
-                                    {{element.cargo_Pedidor}}
-                                </span>
+
 
                             </div>
 
@@ -113,18 +132,16 @@
                       </ng-container>
 
 
-                      <ng-container matColumnDef="info_Autizado">
-                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Restaurant</th>
+                      <ng-container matColumnDef="telefono">
+                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Teléfono</th>
                         <td mat-cell *matCellDef="let element">
 
                             <div class="flex flex-col">
 
                                 <span>
-                                    {{element.nombre_apellidoAutoriza}}
+                                    {{element.telefono}}
                                 </span>
-                                <span>
-                                    {{element.cedula_autoriza}}
-                                </span>
+
 
                             </div>
 
@@ -135,17 +152,15 @@
 
 
 
-                      <ng-container matColumnDef="cargoAutorizado">
-                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Centro de costo</th>
+                      <ng-container matColumnDef="fechaRegistro">
+                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Fecha de registro</th>
                         <td mat-cell *matCellDef="let element">
                             <div class="flex flex-col">
 
                                 <span>
-                                    {{element.centro_autoriza}}
+                                    {{element.fechaRegistro | dataTable : 'date'}}
                                 </span>
-                                <span>
-                                    {{element.cargo_autoriza}}
-                                </span>
+
 
                             </div>
 

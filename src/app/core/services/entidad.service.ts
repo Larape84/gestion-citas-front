@@ -16,11 +16,34 @@ export class EntidadService {
 
   public crearEntidad(entidad): Observable<any>{
 
-      return this._httpClient.post(this._appSetting.entidad.base, entidad)
+      return this._httpClient.post(this._appSetting.entidad.registarEntidad, entidad)
+    }
+
+      public actualizarEntidad(entidad): Observable<any>{
+
+      return this._httpClient.put(this._appSetting.entidad.actualizarEntidad, entidad)
     }
 
 
 
+
+    public listarEntidad(): Observable<any>{
+
+      return this._httpClient.get(this._appSetting.entidad.listarEntidad)
+    }
+
+
+
+    public guardarAgenda(agenda): Observable<any>{
+
+      return this._httpClient.post(this._appSetting.agenda.guardarAgenda, agenda)
+    }
+
+
+    public listarAgenda(fecha): Observable<any>{
+        const params = {fecha}
+      return this._httpClient.get(this._appSetting.agenda.listarAgenda, {params})
+    }
 
 
 

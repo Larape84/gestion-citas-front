@@ -18,7 +18,29 @@
 
             <div class="w-full flex flex-row justify-between py-2 px-2 gap-2">
 
-                <button type="button" mat-raised-button color="primary">Crear registro</button>
+                <div class="flex flex-row gap-2">
+                <button type="button" mat-raised-button color="primary" (click)="crearAgenda()">Crear Agenda</button>
+
+                <div class="rounded-full flex flex-row items-center px-4 border border-gray-200">
+
+
+                    <input class="w-[80px]" [(ngModel)]="hoy" matInput [matDatepicker]="picker" >
+
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+
+                </div>
+
+
+
+                <button (click)="listarAgendas()" mat-stroked-button type="button" >
+                    <mat-icon>search</mat-icon>
+                    Consultar
+                </button>
+
+
+                </div>
+
 
                 <div class="flex flex-row gap-2">
 

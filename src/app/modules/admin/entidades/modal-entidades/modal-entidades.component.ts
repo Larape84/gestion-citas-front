@@ -40,9 +40,51 @@ export class ModalEntidadesComponent implements OnInit {
             nombre: [data?.nombre || '' ,[Validators.required]],
             direccion: [data?.direccion || '' ,[Validators.required]],
             telefono: [data?.telefono ||'' ,[Validators.required]],
-            tipo: [data?.tipo || '' ,[Validators.required]],
+            tipo: [data?.tipo || '' ,[]],
 
         })
+
+    }
+
+
+       public actualizar(): void {
+
+        const callback = ()=>{
+
+            const form = this.formEntidad.getRawValue()
+
+
+            const payload = {
+                ...form
+            }
+
+
+
+
+            this._entidadService.actualizarEntidad(payload).subscribe({
+                next:(resp)=>{
+                    this.sweetAlertService.alertSuccess().then(()=>{
+                         this._modalRef.close(true)
+                    })
+                },
+                error:(e)=>{
+                    this.sweetAlertService.alertError(e)
+                }
+            })
+
+
+
+
+
+
+
+        }
+
+        this.sweetAlertService.alertConfirmation(callback)
+
+
+
+
 
     }
 
@@ -60,7 +102,7 @@ export class ModalEntidadesComponent implements OnInit {
             this._entidadService.crearEntidad(payload).subscribe({
                 next:(resp)=>{
                     this.sweetAlertService.alertSuccess().then(()=>{
-                         this._modalRef.close()
+                         this._modalRef.close(true)
                     })
                 },
                 error:(e)=>{
@@ -86,7 +128,7 @@ export class ModalEntidadesComponent implements OnInit {
 
 
     public cerrar(): void {
-        this._modalRef.close()
+        this._modalRef.close(null)
 
     }
 
