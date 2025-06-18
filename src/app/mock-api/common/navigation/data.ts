@@ -33,34 +33,38 @@ export const defaultNavigation: FuseNavigationItem[] = [
 
 ];
 
-export const compactNavigation: FuseNavigationItem[] = [
+export const compactNavigation: FuseNavigationItem[] | any = [
        {
         id   : 'Usuarios',
         title: 'Usuarios',
         type : 'basic',
         icon : 'heroicons_outline:users',
-        link : '/usuarios'
+        link : '/usuarios',
+        access : 1
     },
     {
         id   : 'Agendas',
         title: 'Agendas',
         type : 'basic',
         icon : 'heroicons_outline:clipboard-document-list',
-        link : '/agendas'
+        link : '/agendas',
+        access : 2
     },
     {
         id   : 'Entidad',
         title: 'Entidades',
         type : 'basic',
         icon : 'heroicons_outline:square-3-stack-3d',
-        link : '/entidades'
+        link : '/entidades',
+        access : 3
     },
     {
         id   : 'Citas',
         title: 'Citas',
         type : 'basic',
         icon : 'heroicons_outline:calendar-days',
-        link : '/citas'
+        link : '/citas',
+        access : 4
     },
 
 ];

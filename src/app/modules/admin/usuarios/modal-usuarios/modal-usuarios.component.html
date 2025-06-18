@@ -1,1 +1,135 @@
-<p>modal-usuarios works!</p>
+ <div class="w-full flex flex-col gap-2">
+
+    <section class="flex flex-row items-center gap-2">
+
+        <mat-icon class="icon-size-12 text-gray-00">info</mat-icon>
+
+        <span class="text-3xl font-semibold text-gray-700">{{ 'Crear usuario'  }}</span>
+
+    </section>
+
+
+    <hr class="my-0">
+
+      <form [formGroup]="formUsuario" class="flex flex-col max-h-[400px] overflow-y-auto ">
+
+        <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Nombre</mat-label>
+            <input type="text" formControlName="nombre" matInput >
+            <mat-error>{{errorService.msgError(formUsuario, 'nombre')}}</mat-error>
+        </mat-form-field>
+
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Tipo de documento</mat-label>
+
+
+              <mat-select formControlName="tipoDocumento"  >
+                <mat-option  value="">{{'Seleccione'}} </mat-option>
+                 <mat-option  value="CC">{{'CEDULA'}} </mat-option>
+                  <mat-option  value="CE">{{'CEDULA EXTRANJERIA'}} </mat-option>
+                  <mat-option  value="PA">{{'PASAPORTE'}} </mat-option>
+            </mat-select>
+
+
+              <mat-error>{{errorService.msgError(formUsuario, 'tipoDocumento')}}</mat-error>
+
+        </mat-form-field>
+
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Numero de documento</mat-label>
+            <input type="text" formControlName="numDocumento" matInput >
+              <mat-error>{{errorService.msgError(formUsuario, 'numDocumento')}}</mat-error>
+
+        </mat-form-field>
+
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Correo</mat-label>
+            <input type="text" formControlName="email" matInput >
+              <mat-error>{{errorService.msgError(formUsuario, 'email')}}</mat-error>
+
+        </mat-form-field>
+
+            <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Password</mat-label>
+            <input #passwordField  type="password" formControlName="password" matInput >
+
+            <button
+                            mat-icon-button
+                            type="button"
+                            (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                            matSuffix>
+                            <button mat-icon-button type="button"
+                            (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                            matSuffix>
+                            <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'password'"
+                                [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                            <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'text'"
+                                [svgIcon]="'heroicons_solid:eye-slash'"></mat-icon>
+                        </button>
+                        </button>
+
+
+
+              <mat-error>{{errorService.msgError(formUsuario, 'password')}}</mat-error>
+
+        </mat-form-field>
+
+
+            <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Teléfono</mat-label>
+            <input type="text" formControlName="telefono" matInput >
+              <mat-error>{{errorService.msgError(formUsuario, 'telefono')}}</mat-error>
+
+        </mat-form-field>
+
+
+            <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Tipo de usuario</mat-label>
+
+             <mat-select formControlName="tipoUsuario"  >
+                <mat-option  value="">{{'Seleccione'}} </mat-option>
+                 <mat-option  value="ADMIN">{{'ADMINISTRADOR'}} </mat-option>
+                 <mat-option  value="ENTIDAD">{{'ENTIDAD'}} </mat-option>
+                  <mat-option  value="USER">{{'USUARIO'}} </mat-option>
+            </mat-select>
+
+              <mat-error>{{errorService.msgError(formUsuario, 'tipoUsuario')}}</mat-error>
+
+        </mat-form-field>
+
+
+
+
+          <!-- <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Tipo</mat-label>
+            <input type="text" formControlName="tipo" matInput >
+              <mat-error>{{errorService.msgError(formEntidad, 'tipo')}}</mat-error>
+
+        </mat-form-field> -->
+
+
+
+
+    </form>
+
+     <hr class="my-0">
+
+      <section class="flex w-full justify-evenly">
+
+        <button *ngIf="!data" (click)="guardar()" [disabled]="formUsuario.invalid" type="button" mat-raised-button color="primary">
+            Crear usuario
+        </button>
+
+         <button *ngIf="!!data" (click)="actualizar()" [disabled]="formUsuario.invalid" type="button" mat-raised-button color="primary">
+            Actualizar usuario
+        </button>
+
+        <button (click)="cerrar()" class="bg-gray-200" mat-stroked-button type="button">
+            Cerrar
+        </button>
+
+    </section>
+
+
+
+</div>

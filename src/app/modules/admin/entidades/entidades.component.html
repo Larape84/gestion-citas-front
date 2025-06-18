@@ -25,17 +25,17 @@
 
 
 
-                    <button mat-icon-button type="button">
+                    <button (click)="descargarData()" mat-icon-button type="button">
                         <mat-icon class="icon-size-7 text-gray-600">cloud_download</mat-icon>
                     </button>
 
-                    <button mat-icon-button type="button">
+                    <button (click)="listarEntidad()" mat-icon-button type="button">
                         <mat-icon class="icon-size-7 text-gray-600">settings_backup_restore</mat-icon>
                     </button>
 
                     <div class="rounded-full h-9 gap-2 flex flex-row items-center justify-between border border-gray-300 px-2 w-72">
                         <mat-icon class="icon-size-5">search</mat-icon>
-                        <input placeholder="Filtrar..." type="text" autocomplete="off" matInput class="text-gray-600 w-full">
+                        <input (keyup)="filtrar(entidad.value)" #entidad placeholder="Filtrar..." type="text" autocomplete="off" matInput class="text-gray-600 w-full">
                     </div>
 
                 </div>
@@ -61,7 +61,7 @@
 
                                 <button type="button" mat-icon-button [matMenuTriggerFor]="menuRef">
 
-                                     <mat-icon class="text-gray-400 icon-size-8">menu</mat-icon>
+                                     <mat-icon class="text-gray-400 icon-size-8">list</mat-icon>
 
                                 </button>
 

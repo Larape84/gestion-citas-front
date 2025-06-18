@@ -45,9 +45,42 @@ export class NavigationService
      */
     get(): Observable<any>
     {
+
+
         return this._httpClient.get<Navigation | any>('api/common/navigation').pipe(
             tap((navigation) => {
-                this._navigation.next(navigation);
+                console.log(navigation, 'navigacion')
+
+                const user = sessionStorage.getItem('userToken')
+                const parser = JSON.parse(user)
+
+                const roles = {
+                    ADMIN : [1,2,3,4],
+                    USER : [4],
+                    ENTIDAD : [1,2,3,4]
+                }
+
+                const modules = []
+
+                navigation.compact.forEach((item)=>{
+
+                    if(  roles[parser.tipoUsuario].includes(item.access) ){
+                        modules.push(item)
+
+                    }
+
+                })
+
+                const navegacionCompleta = {
+                    compact:modules,
+                    default:modules,
+                    futuristic:modules,
+                    horizontal:modules
+                }
+                // this._navigation.next(navigation);
+                this._navigation.next(navegacionCompleta);
+
+
             })
         );
     }

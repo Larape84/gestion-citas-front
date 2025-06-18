@@ -49,9 +49,30 @@ export class ModalAgendasComponent {
                 this.entidades = [data]
                  this.formAgenda.controls['entidad'].disable()
                   this.formAgenda.controls['entidad'].updateValueAndValidity()
+            }else{
+                this.listarEntidad()
             }
 
         }
+
+
+         public listarEntidad(): void {
+
+                    this._entidadService.listarEntidad().subscribe({
+                        next:(resp)=>{
+                           this.entidades = resp.data || []
+
+
+                        },
+                        error:(e)=>{
+                            this.sweetAlertService.alertError(e)
+
+                        }
+                    })
+
+
+
+                }
 
 
 
@@ -74,7 +95,7 @@ export class ModalAgendasComponent {
                         })
                     },
                     error:(e)=>{
-                        this.sweetAlertService.alertInfo({})
+                        this.sweetAlertService.alertError(e)
                     }
                 })
 

@@ -156,7 +156,7 @@
 
                                     <div class="col-span-2 w-full flex justify-end">
 
-                                        <button [disabled]="accountForm.invalid" (click)="actualizarDatos()" mat-raised-button type="button" color="primary">
+                                        <button  disabled (click)="actualizarDatos()" mat-raised-button type="button" color="primary">
                                             Actualizar
                                         </button>
 
@@ -226,7 +226,7 @@
 
                                 <div class="w-full flex justify-end mb-40 md:mb-0">
 
-                                    <button (click)="actualizarContrasena()" [disabled]="fomrPassword.invalid ||  fomrPassword.get('repeatPass').value !== fomrPassword.get('newPass').value" class="" type="button" mat-raised-button color="primary">
+                                    <button disabled (click)="actualizarContrasena()" [disabled]="fomrPassword.invalid ||  fomrPassword.get('repeatPass').value !== fomrPassword.get('newPass').value" class="" type="button" mat-raised-button color="primary">
                                         Actualizar contraseña
 
                                     </button>

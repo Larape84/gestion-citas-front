@@ -22,23 +22,23 @@
 
             <div class="w-full flex flex-row justify-between py-2 px-2 gap-2">
 
-                <button type="button" mat-raised-button color="primary">Crear registro</button>
+                <button (click)="crearUsuario()" type="button" mat-raised-button color="primary">Crear nuevo usuario</button>
 
                 <div class="flex flex-row gap-2">
 
 
 
-                    <button mat-icon-button type="button">
+                    <button (click)="descargarData()" mat-icon-button type="button">
                         <mat-icon class="icon-size-7 text-gray-600">cloud_download</mat-icon>
                     </button>
 
-                    <button mat-icon-button type="button">
+                    <button (click)="listarUsuarios()" mat-icon-button type="button">
                         <mat-icon class="icon-size-7 text-gray-600">settings_backup_restore</mat-icon>
                     </button>
 
                     <div class="rounded-full h-9 gap-2 flex flex-row items-center justify-between border border-gray-300 px-2 w-72">
                         <mat-icon class="icon-size-5">search</mat-icon>
-                        <input placeholder="Filtrar..." type="text" autocomplete="off" matInput class="text-gray-600 w-full">
+                        <input (keyup)="filtrar(usuario.value)"  #usuario placeholder="Filtrar..." type="text" autocomplete="off" matInput class="text-gray-600 w-full">
                     </div>
 
                 </div>

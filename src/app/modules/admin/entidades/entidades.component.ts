@@ -7,6 +7,7 @@ import { ModalEntidadesComponent } from './modal-entidades/modal-entidades.compo
 import { EntidadService } from 'app/core/services/entidad.service';
 import { Sweetalert2Service } from 'app/core/services/sweetalert2.service';
 import { ModalAgendasComponent } from '../agendas/modal-agendas/modal-agendas.component';
+import { UtilityService } from 'app/core/services/utility.service';
 
 @Component({
   selector: 'app-entidades',
@@ -28,7 +29,8 @@ export class EntidadesComponent implements OnInit, AfterViewInit, OnDestroy {
         constructor(
             private _modalService: MatDialog,
             private _entidadService: EntidadService,
-            private sweetalerService: Sweetalert2Service
+            private sweetalerService: Sweetalert2Service,
+            private utilService: UtilityService
         ){}
 
 
@@ -70,6 +72,14 @@ export class EntidadesComponent implements OnInit, AfterViewInit, OnDestroy {
         }
 
 
+          public descargarData(): void {
+
+            const data = this.dataSource.data
+            this.utilService.exportAsExcelFile(data,'Entidades_registradas')
+
+        }
+
+
 
         public crearAgenda(entidad): void {
 
@@ -93,14 +103,24 @@ export class EntidadesComponent implements OnInit, AfterViewInit, OnDestroy {
 
         }
 
+
+        public filtrar(text): void {
+
+            this.dataSource.filter = text
+
+        }
+
         public listarEntidad(): void {
 
             this._entidadService.listarEntidad().subscribe({
                 next:(resp)=>{
                     this.dataSource = new MatTableDataSource(resp.data)
+                    this.dataSource.paginator = this.paginador
 
                 },
                 error:(e)=>{
+                    this.dataSource = new  MatTableDataSource([])
+                    this.dataSource.paginator = this.paginador
                     this.sweetalerService.alertError(e)
 
                 }

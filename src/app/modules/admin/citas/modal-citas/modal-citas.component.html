@@ -1,1 +1,73 @@
-<p>modal-citas works!</p>
+<div class="w-full flex flex-col gap-2">
+
+    <section class="flex flex-row items-center gap-2">
+
+        <mat-icon class="icon-size-12 text-gray-00">info</mat-icon>
+
+        <span class="text-3xl font-semibold text-gray-700">{{'Crear Cita' }}</span>
+
+    </section>
+
+
+    <hr class="my-0">
+
+      <form [formGroup]="formCitas" class="flex flex-col ">
+
+        <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Agenda</mat-label>
+
+              <mat-select formControlName="agenda" placeholder="">
+                <mat-option *ngFor="let agenda of agendas" [value]="agenda">{{agenda.nombreAgenda}}</mat-option>
+            </mat-select>
+
+
+            <mat-error>{{errorService.msgError(formCitas, 'agenda')}}</mat-error>
+
+
+        </mat-form-field>
+
+        <mat-label class="text-gray-700 font-semibold">Hora</mat-label>
+
+        <div class="fuse-mat-dense w-full flex flex-col px-3 border border-gray-300 rounded-md h-10">
+            <input #hora matInput type="time" formControlName="hora" id="appointment-time"  name="appointment-time" class="mt-2" >
+        </div>
+
+        <mat-error class="text-sm font-semibold">{{errorService.msgError(formCitas, 'hora')}}</mat-error>
+
+
+         <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Fecha de la agenda</mat-label>
+            <input formControlName="fechaRegistro" matInput>
+
+
+
+        </mat-form-field>
+
+
+
+
+
+
+
+
+    </form>
+
+     <hr class="my-0">
+
+      <section class="flex w-full justify-evenly">
+
+        <button  (click)="guardar()" [disabled]="formCitas.invalid" type="button" mat-raised-button color="primary">
+            Crear cita
+        </button>
+
+
+
+        <button (click)="cerrar()" class="bg-gray-200" mat-stroked-button type="button">
+            Cerrar
+        </button>
+
+    </section>
+
+
+
+</div>

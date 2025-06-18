@@ -32,6 +32,22 @@ export class AppSettingsService {
 
 
 
+      public citas = {
+        listarCitas : EndPoints.uri('cita/listar-citas-fecha'),
+        crearCitas: EndPoints.uri('cita/registra-cita'),
+        agendarCita : EndPoints.uri('cita/agendar-cita-usuario')
+
+
+    }
+
+         public usuario = {
+        crearUsuario : EndPoints.uri('usuarios/registrar-usuario'),
+
+
+    }
+
+
+
 
 
 

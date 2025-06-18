@@ -21,6 +21,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MultiSelectModule } from 'primeng/multiselect';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';  
+import { MatNativeDateModule } from '@angular/material/core';
 
 export const MY_DATE_FORMATS = {
     parse: {
@@ -59,6 +60,7 @@ export const MY_DATE_FORMATS = {
     MatDatepickerModule,
     MultiSelectModule,
     MatAutocompleteModule,
+    MatNativeDateModule
 
 
 
@@ -91,6 +93,7 @@ export const MY_DATE_FORMATS = {
     MatDatepickerModule,
     MultiSelectModule,
     MatAutocompleteModule,
+    MatNativeDateModule
 
 
 

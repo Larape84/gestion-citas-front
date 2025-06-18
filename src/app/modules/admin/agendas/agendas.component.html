@@ -24,7 +24,7 @@
                 <div class="rounded-full flex flex-row items-center px-4 border border-gray-200">
 
 
-                    <input class="w-[80px]" [(ngModel)]="hoy" matInput [matDatepicker]="picker" >
+                    <input class="w-[90px]" [(ngModel)]="hoy" matInput [matDatepicker]="picker" >
 
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
@@ -46,17 +46,17 @@
 
 
 
-                    <button mat-icon-button type="button">
+                    <button (click)="descargarData()" mat-icon-button type="button">
                         <mat-icon class="icon-size-7 text-gray-600">cloud_download</mat-icon>
                     </button>
 
-                    <button mat-icon-button type="button">
+                    <button (click)="listarAgendas()" mat-icon-button type="button">
                         <mat-icon class="icon-size-7 text-gray-600">settings_backup_restore</mat-icon>
                     </button>
 
                     <div class="rounded-full h-9 gap-2 flex flex-row items-center justify-between border border-gray-300 px-2 w-72">
                         <mat-icon class="icon-size-5">search</mat-icon>
-                        <input placeholder="Filtrar..." type="text" autocomplete="off" matInput class="text-gray-600 w-full">
+                        <input (keyup)="filtrar(agenda.value)" #agenda placeholder="Filtrar..." type="text" autocomplete="off" matInput class="text-gray-600 w-full">
                     </div>
 
                 </div>
@@ -71,101 +71,69 @@
                 <table  mat-table [dataSource]="dataSource" >
 
 
-                    <ng-container matColumnDef="fecha_hora">
+
+                     <ng-container matColumnDef="editar">
+                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100"></th>
+                        <td mat-cell *matCellDef="let element">
+                            <div class="flex flex-row items-center">
+
+                                <button (click)="crearCita(element)" mat-icon-button type="button" class="">
+                                    <mat-icon class=" text-gray-500">calendar_today</mat-icon>
+                                </button>
+
+                            </div>
+
+
+                        </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="nombreAgenda">
+                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Agenda</th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombreAgenda}} </td>
+                      </ng-container>
+
+
+                          <ng-container matColumnDef="tipoAgenda">
+                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Tipo de agenda</th>
+                        <td mat-cell *matCellDef="let element"> {{element.tipoAgenda}} </td>
+                      </ng-container>
+
+
+
+
+
+
+
+
+
+
+
+                      <ng-container matColumnDef="fechaAgenda">
+                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Fecha de la agenda</th>
+                        <td mat-cell *matCellDef="let element">
+
+                            <div class="flex flex-col">
+
+                                <span>
+                                    {{element.fechaAgenda}}
+                                </span>
+
+                            </div>
+
+
+
+                        </td>
+                      </ng-container>
+
+
+
+                      <ng-container matColumnDef="fechaRegistro">
                         <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Fecha de registro</th>
                         <td mat-cell *matCellDef="let element">
                             <div class="flex flex-col">
 
                                 <span>
-                                    {{element.fecha}}
-                                </span>
-                                <span>
-                                    {{element.hora}}
-                                </span>
-
-                            </div>
-                        </td>
-                      </ng-container>
-
-
-                      <ng-container matColumnDef="tipo_comida">
-                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Tipo de comida</th>
-                        <td mat-cell *matCellDef="let element"> {{element.comida}} </td>
-                      </ng-container>
-
-
-
-                    <ng-container matColumnDef="info_pedidor">
-                      <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Funcionario</th>
-                      <td mat-cell *matCellDef="let element">
-
-                        <div class="flex flex-col">
-
-                            <span>
-                                {{element.nombre_apellidoPedidor}}
-                            </span>
-                            <span>
-                                {{element.cedulaPedidor}}
-                            </span>
-
-                        </div>
-
-
-                      </td>
-                    </ng-container>
-
-
-
-                      <ng-container matColumnDef="cargo_pedidor">
-                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Cargo del funcionario</th>
-                        <td mat-cell *matCellDef="let element">
-                            <div class="flex flex-col">
-
-                                <span>
-                                    {{element.centro_Pedidor}}
-                                </span>
-                                <span>
-                                    {{element.cargo_Pedidor}}
-                                </span>
-
-                            </div>
-
-                        </td>
-                      </ng-container>
-
-
-                      <ng-container matColumnDef="info_Autizado">
-                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Restaurant</th>
-                        <td mat-cell *matCellDef="let element">
-
-                            <div class="flex flex-col">
-
-                                <span>
-                                    {{element.nombre_apellidoAutoriza}}
-                                </span>
-                                <span>
-                                    {{element.cedula_autoriza}}
-                                </span>
-
-                            </div>
-
-
-
-                        </td>
-                      </ng-container>
-
-
-
-                      <ng-container matColumnDef="cargoAutorizado">
-                        <th mat-header-cell *matHeaderCellDef class="bg-gray-100">Centro de costo</th>
-                        <td mat-cell *matCellDef="let element">
-                            <div class="flex flex-col">
-
-                                <span>
-                                    {{element.centro_autoriza}}
-                                </span>
-                                <span>
-                                    {{element.cargo_autoriza}}
+                                    {{element.fechaRegistro | dataTable : 'date'}}
                                 </span>
 
                             </div>
